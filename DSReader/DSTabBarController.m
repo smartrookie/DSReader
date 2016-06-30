@@ -8,14 +8,14 @@
 
 #import "DSTabBarController.h"
 #import "DSNavigationController.h"
-#import "DSPageViewController.h"
+#import "DSBookshelfController.h"
 
 @implementation DSTabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    DSPageViewController *pageCtrl = [DSPageViewController new];
+    DSBookshelfController *pageCtrl = [DSBookshelfController new];
     DSNavigationController *navi = [[DSNavigationController alloc] initWithRootViewController:pageCtrl];
     
     [self addChildViewController:navi];
