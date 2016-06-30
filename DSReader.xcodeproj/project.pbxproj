@@ -7,25 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46B02236CE63B52CFFA1F8BD /* libPods-DSReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2009CF071B75BF403DA50DBA /* libPods-DSReader.a */; };
 		655FA85B1D24F2F1005A5A52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA85A1D24F2F1005A5A52 /* main.m */; };
 		655FA85E1D24F2F1005A5A52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA85D1D24F2F1005A5A52 /* AppDelegate.m */; };
-		655FA8611D24F2F1005A5A52 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA8601D24F2F1005A5A52 /* ViewController.m */; };
-		655FA8641D24F2F1005A5A52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 655FA8621D24F2F1005A5A52 /* Main.storyboard */; };
 		655FA8661D24F2F1005A5A52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 655FA8651D24F2F1005A5A52 /* Assets.xcassets */; };
 		655FA8691D24F2F1005A5A52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 655FA8671D24F2F1005A5A52 /* LaunchScreen.storyboard */; };
+		655FA8721D24FCE0005A5A52 /* DSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA8711D24FCE0005A5A52 /* DSTabBarController.m */; };
+		655FA8751D24FDF8005A5A52 /* DSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA8741D24FDF8005A5A52 /* DSNavigationController.m */; };
+		655FA87B1D24FEE2005A5A52 /* DSPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA87A1D24FEE2005A5A52 /* DSPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2009CF071B75BF403DA50DBA /* libPods-DSReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DSReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		655FA8561D24F2F1005A5A52 /* DSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		655FA85A1D24F2F1005A5A52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		655FA85C1D24F2F1005A5A52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		655FA85D1D24F2F1005A5A52 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		655FA85F1D24F2F1005A5A52 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		655FA8601D24F2F1005A5A52 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		655FA8631D24F2F1005A5A52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		655FA8651D24F2F1005A5A52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		655FA8681D24F2F1005A5A52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		655FA86A1D24F2F1005A5A52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		655FA8701D24FCE0005A5A52 /* DSTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSTabBarController.h; sourceTree = "<group>"; };
+		655FA8711D24FCE0005A5A52 /* DSTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSTabBarController.m; sourceTree = "<group>"; };
+		655FA8731D24FDF8005A5A52 /* DSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSNavigationController.h; sourceTree = "<group>"; };
+		655FA8741D24FDF8005A5A52 /* DSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSNavigationController.m; sourceTree = "<group>"; };
+		655FA8791D24FEE2005A5A52 /* DSPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPageViewController.h; sourceTree = "<group>"; };
+		655FA87A1D24FEE2005A5A52 /* DSPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPageViewController.m; sourceTree = "<group>"; };
+		9C41F3B2C4951571653080E9 /* Pods-DSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.debug.xcconfig"; sourceTree = "<group>"; };
+		AFC71F64E8D1C1283A126838 /* Pods-DSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +41,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46B02236CE63B52CFFA1F8BD /* libPods-DSReader.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E5F8336CAEB5F673F0A881D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9C41F3B2C4951571653080E9 /* Pods-DSReader.debug.xcconfig */,
+				AFC71F64E8D1C1283A126838 /* Pods-DSReader.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		655FA84D1D24F2F1005A5A52 = {
 			isa = PBXGroup;
 			children = (
 				655FA8581D24F2F1005A5A52 /* DSReader */,
 				655FA8571D24F2F1005A5A52 /* Products */,
+				5E5F8336CAEB5F673F0A881D /* Pods */,
+				A64D1D7FB78D6D9ECBE078D4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,9 +80,12 @@
 			children = (
 				655FA85C1D24F2F1005A5A52 /* AppDelegate.h */,
 				655FA85D1D24F2F1005A5A52 /* AppDelegate.m */,
-				655FA85F1D24F2F1005A5A52 /* ViewController.h */,
-				655FA8601D24F2F1005A5A52 /* ViewController.m */,
-				655FA8621D24F2F1005A5A52 /* Main.storyboard */,
+				655FA8731D24FDF8005A5A52 /* DSNavigationController.h */,
+				655FA8741D24FDF8005A5A52 /* DSNavigationController.m */,
+				655FA8701D24FCE0005A5A52 /* DSTabBarController.h */,
+				655FA8711D24FCE0005A5A52 /* DSTabBarController.m */,
+				655FA8791D24FEE2005A5A52 /* DSPageViewController.h */,
+				655FA87A1D24FEE2005A5A52 /* DSPageViewController.m */,
 				655FA8651D24F2F1005A5A52 /* Assets.xcassets */,
 				655FA8671D24F2F1005A5A52 /* LaunchScreen.storyboard */,
 				655FA86A1D24F2F1005A5A52 /* Info.plist */,
@@ -79,6 +102,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A64D1D7FB78D6D9ECBE078D4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2009CF071B75BF403DA50DBA /* libPods-DSReader.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +117,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 655FA86D1D24F2F1005A5A52 /* Build configuration list for PBXNativeTarget "DSReader" */;
 			buildPhases = (
+				CBFC33A8FFF715480A752F29 /* [CP] Check Pods Manifest.lock */,
 				655FA8521D24F2F1005A5A52 /* Sources */,
 				655FA8531D24F2F1005A5A52 /* Frameworks */,
 				655FA8541D24F2F1005A5A52 /* Resources */,
+				041012A1CD05831D963E9298 /* [CP] Embed Pods Frameworks */,
+				76038D2A16AD165060FAD135 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,19 +172,68 @@
 			files = (
 				655FA8691D24F2F1005A5A52 /* LaunchScreen.storyboard in Resources */,
 				655FA8661D24F2F1005A5A52 /* Assets.xcassets in Resources */,
-				655FA8641D24F2F1005A5A52 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		041012A1CD05831D963E9298 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DSReader/Pods-DSReader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76038D2A16AD165060FAD135 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DSReader/Pods-DSReader-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBFC33A8FFF715480A752F29 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		655FA8521D24F2F1005A5A52 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				655FA8611D24F2F1005A5A52 /* ViewController.m in Sources */,
 				655FA85E1D24F2F1005A5A52 /* AppDelegate.m in Sources */,
+				655FA87B1D24FEE2005A5A52 /* DSPageViewController.m in Sources */,
+				655FA8721D24FCE0005A5A52 /* DSTabBarController.m in Sources */,
+				655FA8751D24FDF8005A5A52 /* DSNavigationController.m in Sources */,
 				655FA85B1D24F2F1005A5A52 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,14 +241,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		655FA8621D24F2F1005A5A52 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				655FA8631D24F2F1005A5A52 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		655FA8671D24F2F1005A5A52 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -214,7 +289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -252,7 +327,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -261,9 +336,11 @@
 		};
 		655FA86E1D24F2F1005A5A52 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C41F3B2C4951571653080E9 /* Pods-DSReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DSReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = smart.DSReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,9 +349,11 @@
 		};
 		655FA86F1D24F2F1005A5A52 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFC71F64E8D1C1283A126838 /* Pods-DSReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DSReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = smart.DSReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -300,6 +379,7 @@
 				655FA86F1D24F2F1005A5A52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

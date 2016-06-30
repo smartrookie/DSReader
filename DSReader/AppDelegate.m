@@ -7,8 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "DSTabBarController.h"
 
 @interface AppDelegate ()
+{
+    DSTabBarController *_tabController;
+}
 
 @end
 
@@ -16,7 +20,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    _tabController = [DSTabBarController new];
+    
+    _window.rootViewController = _tabController;
+    
+    [_window makeKeyAndVisible];
+    
     return YES;
 }
 
