@@ -17,6 +17,8 @@
 		655FA87B1D24FEE2005A5A52 /* DSPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA87A1D24FEE2005A5A52 /* DSPageViewController.m */; };
 		655FA8841D250970005A5A52 /* DSBookshelfController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA8831D250970005A5A52 /* DSBookshelfController.m */; };
 		655FA8871D250999005A5A52 /* DSListShelfController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA8861D250999005A5A52 /* DSListShelfController.m */; };
+		655FA88A1D2511ED005A5A52 /* yiqiantulong.epub in Resources */ = {isa = PBXBuildFile; fileRef = 655FA8891D2511ED005A5A52 /* yiqiantulong.epub */; };
+		655FA88C1D251363005A5A52 /* yiqiantulong.txt in Resources */ = {isa = PBXBuildFile; fileRef = 655FA88B1D251363005A5A52 /* yiqiantulong.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		655FA8831D250970005A5A52 /* DSBookshelfController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBookshelfController.m; sourceTree = "<group>"; };
 		655FA8851D250999005A5A52 /* DSListShelfController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSListShelfController.h; sourceTree = "<group>"; };
 		655FA8861D250999005A5A52 /* DSListShelfController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSListShelfController.m; sourceTree = "<group>"; };
+		655FA8891D2511ED005A5A52 /* yiqiantulong.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = yiqiantulong.epub; sourceTree = "<group>"; };
+		655FA88B1D251363005A5A52 /* yiqiantulong.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = yiqiantulong.txt; sourceTree = "<group>"; };
 		9C41F3B2C4951571653080E9 /* Pods-DSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.debug.xcconfig"; sourceTree = "<group>"; };
 		AFC71F64E8D1C1283A126838 /* Pods-DSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +96,7 @@
 				655FA8711D24FCE0005A5A52 /* DSTabBarController.m */,
 				655FA8791D24FEE2005A5A52 /* DSPageViewController.h */,
 				655FA87A1D24FEE2005A5A52 /* DSPageViewController.m */,
+				655FA8881D2511ED005A5A52 /* BooksDemo */,
 				655FA8811D250970005A5A52 /* Bookshelf(书架) */,
 				655FA8651D24F2F1005A5A52 /* Assets.xcassets */,
 				655FA8671D24F2F1005A5A52 /* LaunchScreen.storyboard */,
@@ -119,6 +124,15 @@
 			);
 			name = "Bookshelf(书架)";
 			path = Bookshelf;
+			sourceTree = "<group>";
+		};
+		655FA8881D2511ED005A5A52 /* BooksDemo */ = {
+			isa = PBXGroup;
+			children = (
+				655FA88B1D251363005A5A52 /* yiqiantulong.txt */,
+				655FA8891D2511ED005A5A52 /* yiqiantulong.epub */,
+			);
+			path = BooksDemo;
 			sourceTree = "<group>";
 		};
 		A64D1D7FB78D6D9ECBE078D4 /* Frameworks */ = {
@@ -191,6 +205,8 @@
 			files = (
 				655FA8691D24F2F1005A5A52 /* LaunchScreen.storyboard in Resources */,
 				655FA8661D24F2F1005A5A52 /* Assets.xcassets in Resources */,
+				655FA88C1D251363005A5A52 /* yiqiantulong.txt in Resources */,
+				655FA88A1D2511ED005A5A52 /* yiqiantulong.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

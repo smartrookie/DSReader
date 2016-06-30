@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@interface DSListShelfCell : UITableViewCell
+
+@end
+
 @interface DSListShelfController : UITableViewController
 
 @end
