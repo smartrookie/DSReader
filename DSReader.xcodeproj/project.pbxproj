@@ -14,11 +14,13 @@
 		655FA8691D24F2F1005A5A52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 655FA8671D24F2F1005A5A52 /* LaunchScreen.storyboard */; };
 		655FA8721D24FCE0005A5A52 /* DSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA8711D24FCE0005A5A52 /* DSTabBarController.m */; };
 		655FA8751D24FDF8005A5A52 /* DSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA8741D24FDF8005A5A52 /* DSNavigationController.m */; };
-		655FA87B1D24FEE2005A5A52 /* DSPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA87A1D24FEE2005A5A52 /* DSPageViewController.m */; };
+		655FA87B1D24FEE2005A5A52 /* DSPageViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA87A1D24FEE2005A5A52 /* DSPageViewsController.m */; };
 		655FA8841D250970005A5A52 /* DSBookshelfController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA8831D250970005A5A52 /* DSBookshelfController.m */; };
 		655FA8871D250999005A5A52 /* DSListShelfController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA8861D250999005A5A52 /* DSListShelfController.m */; };
 		655FA88A1D2511ED005A5A52 /* yiqiantulong.epub in Resources */ = {isa = PBXBuildFile; fileRef = 655FA8891D2511ED005A5A52 /* yiqiantulong.epub */; };
 		655FA88C1D251363005A5A52 /* yiqiantulong.txt in Resources */ = {isa = PBXBuildFile; fileRef = 655FA88B1D251363005A5A52 /* yiqiantulong.txt */; };
+		65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D8149C1D266C3600832AC2 /* UIColor+ds.m */; };
+		65D814A11D26862400832AC2 /* DSPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D814A01D26862400832AC2 /* DSPageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,14 +36,18 @@
 		655FA8711D24FCE0005A5A52 /* DSTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSTabBarController.m; sourceTree = "<group>"; };
 		655FA8731D24FDF8005A5A52 /* DSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSNavigationController.h; sourceTree = "<group>"; };
 		655FA8741D24FDF8005A5A52 /* DSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSNavigationController.m; sourceTree = "<group>"; };
-		655FA8791D24FEE2005A5A52 /* DSPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPageViewController.h; sourceTree = "<group>"; };
-		655FA87A1D24FEE2005A5A52 /* DSPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPageViewController.m; sourceTree = "<group>"; };
+		655FA8791D24FEE2005A5A52 /* DSPageViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPageViewsController.h; path = ../DSPageViewsController.h; sourceTree = "<group>"; };
+		655FA87A1D24FEE2005A5A52 /* DSPageViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPageViewsController.m; path = ../DSPageViewsController.m; sourceTree = "<group>"; };
 		655FA8821D250970005A5A52 /* DSBookshelfController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSBookshelfController.h; sourceTree = "<group>"; };
 		655FA8831D250970005A5A52 /* DSBookshelfController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBookshelfController.m; sourceTree = "<group>"; };
 		655FA8851D250999005A5A52 /* DSListShelfController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSListShelfController.h; sourceTree = "<group>"; };
 		655FA8861D250999005A5A52 /* DSListShelfController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSListShelfController.m; sourceTree = "<group>"; };
 		655FA8891D2511ED005A5A52 /* yiqiantulong.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = yiqiantulong.epub; sourceTree = "<group>"; };
 		655FA88B1D251363005A5A52 /* yiqiantulong.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = yiqiantulong.txt; sourceTree = "<group>"; };
+		65D8149B1D266C3600832AC2 /* UIColor+ds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ds.h"; sourceTree = "<group>"; };
+		65D8149C1D266C3600832AC2 /* UIColor+ds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ds.m"; sourceTree = "<group>"; };
+		65D8149F1D26862400832AC2 /* DSPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPageView.h; sourceTree = "<group>"; };
+		65D814A01D26862400832AC2 /* DSPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPageView.m; sourceTree = "<group>"; };
 		9C41F3B2C4951571653080E9 /* Pods-DSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.debug.xcconfig"; sourceTree = "<group>"; };
 		AFC71F64E8D1C1283A126838 /* Pods-DSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,12 +96,13 @@
 			children = (
 				655FA85C1D24F2F1005A5A52 /* AppDelegate.h */,
 				655FA85D1D24F2F1005A5A52 /* AppDelegate.m */,
+				65D8149B1D266C3600832AC2 /* UIColor+ds.h */,
+				65D8149C1D266C3600832AC2 /* UIColor+ds.m */,
 				655FA8731D24FDF8005A5A52 /* DSNavigationController.h */,
 				655FA8741D24FDF8005A5A52 /* DSNavigationController.m */,
 				655FA8701D24FCE0005A5A52 /* DSTabBarController.h */,
 				655FA8711D24FCE0005A5A52 /* DSTabBarController.m */,
-				655FA8791D24FEE2005A5A52 /* DSPageViewController.h */,
-				655FA87A1D24FEE2005A5A52 /* DSPageViewController.m */,
+				65D8149E1D26857D00832AC2 /* BooksPage */,
 				655FA8881D2511ED005A5A52 /* BooksDemo */,
 				655FA8811D250970005A5A52 /* Bookshelf(书架) */,
 				655FA8651D24F2F1005A5A52 /* Assets.xcassets */,
@@ -133,6 +140,17 @@
 				655FA8891D2511ED005A5A52 /* yiqiantulong.epub */,
 			);
 			path = BooksDemo;
+			sourceTree = "<group>";
+		};
+		65D8149E1D26857D00832AC2 /* BooksPage */ = {
+			isa = PBXGroup;
+			children = (
+				655FA8791D24FEE2005A5A52 /* DSPageViewsController.h */,
+				655FA87A1D24FEE2005A5A52 /* DSPageViewsController.m */,
+				65D8149F1D26862400832AC2 /* DSPageView.h */,
+				65D814A01D26862400832AC2 /* DSPageView.m */,
+			);
+			path = BooksPage;
 			sourceTree = "<group>";
 		};
 		A64D1D7FB78D6D9ECBE078D4 /* Frameworks */ = {
@@ -267,12 +285,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				655FA85E1D24F2F1005A5A52 /* AppDelegate.m in Sources */,
-				655FA87B1D24FEE2005A5A52 /* DSPageViewController.m in Sources */,
+				65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */,
+				655FA87B1D24FEE2005A5A52 /* DSPageViewsController.m in Sources */,
 				655FA8841D250970005A5A52 /* DSBookshelfController.m in Sources */,
 				655FA8721D24FCE0005A5A52 /* DSTabBarController.m in Sources */,
 				655FA8751D24FDF8005A5A52 /* DSNavigationController.m in Sources */,
 				655FA8871D250999005A5A52 /* DSListShelfController.m in Sources */,
 				655FA85B1D24F2F1005A5A52 /* main.m in Sources */,
+				65D814A11D26862400832AC2 /* DSPageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

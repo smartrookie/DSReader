@@ -7,7 +7,7 @@
 //
 
 #import "DSListShelfController.h"
-#import "DSPageViewController.h"
+#import "DSPageViewsController.h"
 
 @interface DSListShelfController ()
 
@@ -61,7 +61,7 @@
     
     
     if (indexPath.row == 0) {
-        DSPageViewController *pageVctrl = [DSPageViewController new];
+        DSPageViewsController *pageVctrl = [DSPageViewsController new];
         [self.navigationController pushViewController:pageVctrl animated:YES];
     }
     
