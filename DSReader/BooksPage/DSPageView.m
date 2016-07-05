@@ -8,6 +8,13 @@
 
 #import "DSPageView.h"
 #import "UIColor+ds.h"
+#import "YYKit.h"
+
+@interface DSPageView()
+
+@property (nonatomic) YYTextView *textView;
+
+@end
 
 @implementation DSPageView
 
@@ -16,6 +23,17 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor ds_lightGrayColor];
+    
+    _textView = [YYTextView new];
+    _textView.frame = self.view.bounds;
+    
+    _textView.text = @"Hello world!!!";
+    
+    _textView.editable = NO;
+    [self.view addSubview:_textView];
+    
+    
+    
     
     
 }

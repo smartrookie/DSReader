@@ -8,4 +8,6 @@ pod 'ZipArchive', '~> 1.4.0'
 
 pod 'MBProgressHUD', '~> 0.9.2'
 
+pod 'GDataXML-HTML', '~> 1.3.0'
+
 end

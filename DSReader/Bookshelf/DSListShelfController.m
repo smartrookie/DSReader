@@ -8,6 +8,8 @@
 
 #import "DSListShelfController.h"
 #import "DSPageViewsController.h"
+#import "EpubModel.h"
+#import "EpubParser.h"
 
 @interface DSListShelfController ()
 
@@ -61,6 +63,21 @@
     
     
     if (indexPath.row == 0) {
+        
+        EpubModel *epub = [EpubModel new];
+        
+        EpubParser *parser = [EpubParser new];
+        
+        if ([parser unzipEpub:epub]) {
+            NSLog(@"解压成功");
+        } else {
+            NSLog(@"解压失败");
+        }
+        
+        
+        
+        
+        
         DSPageViewsController *pageVctrl = [DSPageViewsController new];
         [self.navigationController pushViewController:pageVctrl animated:YES];
     }

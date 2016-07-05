@@ -19,6 +19,8 @@
 		655FA8871D250999005A5A52 /* DSListShelfController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA8861D250999005A5A52 /* DSListShelfController.m */; };
 		655FA88A1D2511ED005A5A52 /* yiqiantulong.epub in Resources */ = {isa = PBXBuildFile; fileRef = 655FA8891D2511ED005A5A52 /* yiqiantulong.epub */; };
 		655FA88C1D251363005A5A52 /* yiqiantulong.txt in Resources */ = {isa = PBXBuildFile; fileRef = 655FA88B1D251363005A5A52 /* yiqiantulong.txt */; };
+		657579DE1D2A470400CAEADB /* EpubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 657579DD1D2A470400CAEADB /* EpubModel.m */; };
+		657579E21D2A4AFA00CAEADB /* EpubParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 657579E11D2A4AFA00CAEADB /* EpubParser.m */; };
 		65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D8149C1D266C3600832AC2 /* UIColor+ds.m */; };
 		65D814A11D26862400832AC2 /* DSPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D814A01D26862400832AC2 /* DSPageView.m */; };
 /* End PBXBuildFile section */
@@ -44,6 +46,11 @@
 		655FA8861D250999005A5A52 /* DSListShelfController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSListShelfController.m; sourceTree = "<group>"; };
 		655FA8891D2511ED005A5A52 /* yiqiantulong.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = yiqiantulong.epub; sourceTree = "<group>"; };
 		655FA88B1D251363005A5A52 /* yiqiantulong.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = yiqiantulong.txt; sourceTree = "<group>"; };
+		657579DA1D2A3A8700CAEADB /* DSReaderPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSReaderPrefixHeader.pch; sourceTree = "<group>"; };
+		657579DC1D2A470400CAEADB /* EpubModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubModel.h; sourceTree = "<group>"; };
+		657579DD1D2A470400CAEADB /* EpubModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubModel.m; sourceTree = "<group>"; };
+		657579E01D2A4AFA00CAEADB /* EpubParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubParser.h; sourceTree = "<group>"; };
+		657579E11D2A4AFA00CAEADB /* EpubParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubParser.m; sourceTree = "<group>"; };
 		65D8149B1D266C3600832AC2 /* UIColor+ds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ds.h"; sourceTree = "<group>"; };
 		65D8149C1D266C3600832AC2 /* UIColor+ds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ds.m"; sourceTree = "<group>"; };
 		65D8149F1D26862400832AC2 /* DSPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPageView.h; sourceTree = "<group>"; };
@@ -102,6 +109,8 @@
 				655FA8741D24FDF8005A5A52 /* DSNavigationController.m */,
 				655FA8701D24FCE0005A5A52 /* DSTabBarController.h */,
 				655FA8711D24FCE0005A5A52 /* DSTabBarController.m */,
+				657579DF1D2A482A00CAEADB /* Tools */,
+				657579DB1D2A46BF00CAEADB /* Model */,
 				65D8149E1D26857D00832AC2 /* BooksPage */,
 				655FA8881D2511ED005A5A52 /* BooksDemo */,
 				655FA8811D250970005A5A52 /* Bookshelf(书架) */,
@@ -109,6 +118,7 @@
 				655FA8671D24F2F1005A5A52 /* LaunchScreen.storyboard */,
 				655FA86A1D24F2F1005A5A52 /* Info.plist */,
 				655FA8591D24F2F1005A5A52 /* Supporting Files */,
+				657579DA1D2A3A8700CAEADB /* DSReaderPrefixHeader.pch */,
 			);
 			path = DSReader;
 			sourceTree = "<group>";
@@ -140,6 +150,24 @@
 				655FA8891D2511ED005A5A52 /* yiqiantulong.epub */,
 			);
 			path = BooksDemo;
+			sourceTree = "<group>";
+		};
+		657579DB1D2A46BF00CAEADB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				657579DC1D2A470400CAEADB /* EpubModel.h */,
+				657579DD1D2A470400CAEADB /* EpubModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		657579DF1D2A482A00CAEADB /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				657579E01D2A4AFA00CAEADB /* EpubParser.h */,
+				657579E11D2A4AFA00CAEADB /* EpubParser.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		65D8149E1D26857D00832AC2 /* BooksPage */ = {
@@ -285,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				655FA85E1D24F2F1005A5A52 /* AppDelegate.m in Sources */,
+				657579E21D2A4AFA00CAEADB /* EpubParser.m in Sources */,
 				65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */,
 				655FA87B1D24FEE2005A5A52 /* DSPageViewsController.m in Sources */,
 				655FA8841D250970005A5A52 /* DSBookshelfController.m in Sources */,
@@ -293,6 +322,7 @@
 				655FA8871D250999005A5A52 /* DSListShelfController.m in Sources */,
 				655FA85B1D24F2F1005A5A52 /* main.m in Sources */,
 				65D814A11D26862400832AC2 /* DSPageView.m in Sources */,
+				657579DE1D2A470400CAEADB /* EpubModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = DSReader/DSReaderPrefixHeader.pch;
 				INFOPLIST_FILE = DSReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -412,6 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = DSReader/DSReaderPrefixHeader.pch;
 				INFOPLIST_FILE = DSReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

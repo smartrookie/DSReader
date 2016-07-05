@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>GDataXML-HTML.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,17 +32,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>AB5A4A88FCF76DE0BF02FEE3FB93E477</key>
+		<key>661266EBD6EA604C675CD4D5D02CF971</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D354DB0ABCBB7616E2D514765D4C3798</key>
+		<key>8A7CF3FA1CF433F241347D6F94C8142D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0214D2E374319C3410B7650F989C4A1</key>
+		<key>C8645578BEED8701484D39CBC40B4A00</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD7ACD5424BC2DA100DF01362D11A2A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

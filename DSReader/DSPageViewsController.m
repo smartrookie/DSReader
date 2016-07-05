@@ -11,6 +11,8 @@
 #import "DSPageView.h"
 
 @interface DSPageViewsController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
+{
+}
 
 @end
 
@@ -48,6 +50,14 @@
     
     
 }
+
+- (void)middleZoneTapAction:(id)sender
+{
+    Boolean isHidden = self.navigationController.navigationBar.isHidden;
+    [self.navigationController setNavigationBarHidden:!isHidden animated:YES];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
