@@ -78,7 +78,7 @@
         
         
         
-        DSPageViewsController *pageVctrl = [DSPageViewsController new];
+        DSPageViewsController *pageVctrl = [[DSPageViewsController alloc] initEpubModel:epub];
         [self.navigationController pushViewController:pageVctrl animated:YES];
     }
     

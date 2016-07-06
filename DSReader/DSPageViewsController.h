@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EpubModel.h"
 
 @interface DSPageViewsController : UIPageViewController
+
++ (instancetype)new NS_UNAVAILABLE;
+
+- (instancetype)initEpubModel:(EpubModel *)model;
 
 @end

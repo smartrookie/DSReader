@@ -6,17 +6,17 @@
 //  Copyright © 2016年 rookie. All rights reserved.
 //
 
-#import "DSPageView.h"
+#import "DSTextPageView.h"
 #import "UIColor+ds.h"
 #import "YYKit.h"
 
-@interface DSPageView()
+@interface DSTextPageView()
 
 @property (nonatomic) YYTextView *textView;
 
 @end
 
-@implementation DSPageView
+@implementation DSTextPageView
 
 - (void)viewDidLoad
 {

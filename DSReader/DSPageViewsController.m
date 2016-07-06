@@ -8,15 +8,25 @@
 
 #import "DSPageViewsController.h"
 #import "UIColor+ds.h"
-#import "DSPageView.h"
+#import "DSTextPageView.h"
+#import "DSEpubPageView.h"
 
 @interface DSPageViewsController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
 {
 }
 
+@property (nonatomic) EpubModel *epuModel;
+
 @end
 
 @implementation DSPageViewsController
+
+- (instancetype)initEpubModel:(EpubModel *)model
+{
+    self = [self init];
+    _epuModel = model;
+    return self;
+}
 
 - (instancetype)init
 {
@@ -45,7 +55,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    DSPageView *pageView = [DSPageView new];
+    DSEpubPageView *pageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
     [self setViewControllers:@[pageView] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     
@@ -85,12 +95,24 @@
 
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    return  [DSPageView new];
+    DSEpubPageView *oldPageView = (DSEpubPageView *)viewController;
+    NSInteger oldPageIndex = oldPageView.pageIndex;
+    
+    DSEpubPageView *newPageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
+    newPageView.pageIndex = oldPageIndex;
+    
+    return  newPageView;
 }
 
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    return  [DSPageView new];
+    DSEpubPageView *oldPageView = (DSEpubPageView *)viewController;
+    NSInteger oldPageIndex = oldPageView.pageIndex;
+    
+    DSEpubPageView *newPageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
+    newPageView.pageIndex = oldPageIndex;
+    
+    return  newPageView;
 }
 
 @end

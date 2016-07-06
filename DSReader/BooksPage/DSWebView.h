@@ -1,13 +1,13 @@
 //
-//  DSPageView.h
+//  DSWebView.h
 //  DSReader
 //
-//  Created by rookie on 16/7/1.
+//  Created by rookie on 16/7/6.
 //  Copyright © 2016年 rookie. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface DSPageView : UIViewController
+@interface DSWebView : UIWebView
 
 @end
