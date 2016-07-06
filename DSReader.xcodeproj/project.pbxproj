@@ -21,6 +21,7 @@
 		655FA88C1D251363005A5A52 /* yiqiantulong.txt in Resources */ = {isa = PBXBuildFile; fileRef = 655FA88B1D251363005A5A52 /* yiqiantulong.txt */; };
 		65610A9D1D2CB3AB00227711 /* DSWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65610A9C1D2CB3AB00227711 /* DSWebView.m */; };
 		65610AA01D2CB45200227711 /* DSEpubPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65610A9F1D2CB45200227711 /* DSEpubPageView.m */; };
+		65610AA31D2CF76B00227711 /* DSEpubConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 65610AA21D2CF76B00227711 /* DSEpubConfig.m */; };
 		657579DE1D2A470400CAEADB /* EpubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 657579DD1D2A470400CAEADB /* EpubModel.m */; };
 		657579E21D2A4AFA00CAEADB /* EpubParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 657579E11D2A4AFA00CAEADB /* EpubParser.m */; };
 		65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D8149C1D266C3600832AC2 /* UIColor+ds.m */; };
@@ -52,6 +53,8 @@
 		65610A9C1D2CB3AB00227711 /* DSWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSWebView.m; sourceTree = "<group>"; };
 		65610A9E1D2CB45200227711 /* DSEpubPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSEpubPageView.h; sourceTree = "<group>"; };
 		65610A9F1D2CB45200227711 /* DSEpubPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSEpubPageView.m; sourceTree = "<group>"; };
+		65610AA11D2CF76B00227711 /* DSEpubConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSEpubConfig.h; sourceTree = "<group>"; };
+		65610AA21D2CF76B00227711 /* DSEpubConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSEpubConfig.m; sourceTree = "<group>"; };
 		657579DA1D2A3A8700CAEADB /* DSReaderPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSReaderPrefixHeader.pch; sourceTree = "<group>"; };
 		657579DC1D2A470400CAEADB /* EpubModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubModel.h; sourceTree = "<group>"; };
 		657579DD1D2A470400CAEADB /* EpubModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubModel.m; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				655FA8741D24FDF8005A5A52 /* DSNavigationController.m */,
 				655FA8701D24FCE0005A5A52 /* DSTabBarController.h */,
 				655FA8711D24FCE0005A5A52 /* DSTabBarController.m */,
+				65610AA11D2CF76B00227711 /* DSEpubConfig.h */,
+				65610AA21D2CF76B00227711 /* DSEpubConfig.m */,
 				657579DF1D2A482A00CAEADB /* Tools */,
 				657579DB1D2A46BF00CAEADB /* Model */,
 				65D8149E1D26857D00832AC2 /* BooksPage */,
@@ -328,6 +333,7 @@
 				65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */,
 				655FA87B1D24FEE2005A5A52 /* DSPageViewsController.m in Sources */,
 				655FA8841D250970005A5A52 /* DSBookshelfController.m in Sources */,
+				65610AA31D2CF76B00227711 /* DSEpubConfig.m in Sources */,
 				655FA8721D24FCE0005A5A52 /* DSTabBarController.m in Sources */,
 				655FA8751D24FDF8005A5A52 /* DSNavigationController.m in Sources */,
 				655FA8871D250999005A5A52 /* DSListShelfController.m in Sources */,

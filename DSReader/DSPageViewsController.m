@@ -10,6 +10,7 @@
 #import "UIColor+ds.h"
 #import "DSTextPageView.h"
 #import "DSEpubPageView.h"
+#import "DSEpubConfig.h"
 
 @interface DSPageViewsController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
 {
@@ -114,5 +115,32 @@
     
     return  newPageView;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
