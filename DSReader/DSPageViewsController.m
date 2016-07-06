@@ -97,10 +97,10 @@
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     DSEpubPageView *oldPageView = (DSEpubPageView *)viewController;
-    NSInteger oldPageIndex = oldPageView.pageIndex;
+    NSInteger oldChapterIndex = oldPageView.chapterIndex;
     
     DSEpubPageView *newPageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
-    newPageView.pageIndex = oldPageIndex;
+    newPageView.chapterIndex = oldChapterIndex + 1;
     
     return  newPageView;
 }
@@ -108,10 +108,12 @@
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
     DSEpubPageView *oldPageView = (DSEpubPageView *)viewController;
-    NSInteger oldPageIndex = oldPageView.pageIndex;
+    NSInteger oldChapterIndex = oldPageView.chapterIndex;
+    
+    if (oldChapterIndex == 0) return nil;
     
     DSEpubPageView *newPageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
-    newPageView.pageIndex = oldPageIndex;
+    newPageView.chapterIndex = oldChapterIndex - 1 ;
     
     return  newPageView;
 }

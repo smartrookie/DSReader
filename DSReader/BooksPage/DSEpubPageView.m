@@ -10,7 +10,7 @@
 #import "DSWebView.h"
 #import "DSEpubConfig.h"
 
-@interface DSEpubPageView ()
+@interface DSEpubPageView ()<UIWebViewDelegate>
 
 @property (weak, nonatomic) EpubModel *epub;
 @property (nonatomic) DSWebView *webView;
@@ -31,9 +31,10 @@
     
     _webView = [DSWebView new];
     _webView.frame = self.view.bounds;
+    _webView.delegate = self;
     [self.view addSubview:_webView];
     
-    NSString *href = [self pageHrefByPageRefIndex:_pageIndex];
+    NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
     //NSLog(@"Href == %@",href);
     
     NSURL* baseURL = [NSURL fileURLWithPath:href];
@@ -208,6 +209,89 @@
 
 
 
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    return navigationType != UIWebViewNavigationTypeLinkClicked;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    DSEpubConfig *config = [DSEpubConfig shareInstance];
+    NSString *insertRule = [NSString stringWithFormat:@"addCSSRule('html', 'padding: 0px; height: %fpx; -webkit-column-gap: 0px; -webkit-column-width: %fpx;')", webView.frame.size.height, webView.frame.size.width];
+    
+    NSString *textSizeRule1 = [NSString stringWithFormat:@"addCSSRule('body', ' font-size:%@px;')", @(config.fontSize)];
+    NSString *textSizeRule2 = [NSString stringWithFormat:@"addCSSRule('p', ' font-size:%@px;')", @(config.fontSize)];
+    
+    [webView stringByEvaluatingJavaScriptFromString:insertRule];
+    [webView stringByEvaluatingJavaScriptFromString:textSizeRule1];
+    [webView stringByEvaluatingJavaScriptFromString:textSizeRule2];
+    
+    
+//    if (self.calcPageOffy && self.pageRefIndex>-1)
+//    {
+//        //需要计算  页面的信息
+//        
+//        NSInteger totalWidth = [[webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.scrollWidth"] integerValue];
+//        
+//        NSInteger theWebSizeWidth=theWebView.bounds.size.width;
+//        int offCountInPage = (int)((float)totalWidth/theWebSizeWidth);
+//        //        if (offCountInPage < 0 || offCountInPage >100)
+//        //        {
+//        //            NSLog(@"11");
+//        //        }
+//        
+//        [self.epubVC.dictPageWithOffYCount setObject:[NSString stringWithFormat:@"%@",@(offCountInPage)] forKey:[NSString stringWithFormat:@"%@",@(self.pageRefIndex)]];
+//        
+//        //
+//        self.calcPageOffy=0;    //计算完成
+//        
+//    }
+//    
+//    NSInteger currentOffCountInPage=[[self.epubVC.dictPageWithOffYCount objectForKey:[NSString stringWithFormat:@"%@",@(self.pageRefIndex)]] integerValue];
+//    
+//    //滚动索引
+//    if (self.isPrePage) {
+//        self.offYIndexInPage=currentOffCountInPage-1;
+//    }
+//    if (self.offYIndexInPage >= currentOffCountInPage) {
+//        self.offYIndexInPage=currentOffCountInPage-1;
+//    }
+//    if (self.offYIndexInPage <0) {
+//        self.offYIndexInPage=0;
+//    }
+//    
+//    
+//    //
+//    if (self.offYIndexInPage > -1 && self.offYIndexInPage < currentOffCountInPage && currentOffCountInPage>0)
+//    {
+//        
+//        
+//        //查找
+//        if (self.epubVC.pageIsShowSearchResultText && [self.epubVC.currentSearchText length]>0) {
+//            
+//            [(EPUBPageWebView*)theWebView highlightAllOccurencesOfString:self.epubVC.currentSearchText];
+//        }
+//        
+//        //笔记
+//        for (NSMutableDictionary *item1 in self.epubVC.arrNotes) {
+//            NSInteger notePageRefIndex= [[item1 objectForKey:@"PageRefIndex"] integerValue];
+//            if (self.pageRefIndex == notePageRefIndex) {
+//                
+//                NSString *noteContent=[item1 objectForKey:@"NoteContent"];
+//                [(EPUBPageWebView*)theWebView highlightAllOccurencesOfString:noteContent];    //ok
+//                //                [theWebView underlineAllOccurencesOfString:noteContent];  // 需要 js 调试
+//            }
+//            
+//        }
+//        
+//        //页码内跳转
+//        [self gotoOffYInPageWithOffYIndex:self.offYIndexInPage WithOffCountInPage:currentOffCountInPage];
+//        
+//        self.epubVC.currentOffYIndexInPage=self.offYIndexInPage;
+//    }
+}
 
 
 

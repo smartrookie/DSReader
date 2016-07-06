@@ -12,7 +12,8 @@
 @interface DSEpubPageView : UIViewController
 
 
-@property (nonatomic) NSInteger pageIndex;
+@property (nonatomic) NSInteger chapterIndex;
+@property (nonatomic) NSInteger pageNum;
 
 
 - (instancetype)init NS_UNAVAILABLE;
