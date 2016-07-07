@@ -43,6 +43,14 @@
     [_webView loadHTMLString:[self htmlContentFromFile:href AddJsContent:[self jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
 }
 
+- (NSInteger)pageCount
+{
+    NSString *jsString = @"document.documentElement.scrollWidth";
+    NSInteger chapterWidth = [[_webView stringByEvaluatingJavaScriptFromString:jsString] integerValue];
+    NSInteger pageWidth=_webView.bounds.size.width;
+    return (int)((float)chapterWidth/pageWidth);
+}
+
 
 - (NSString *)pageHrefByPageRefIndex:(NSInteger)pageRefIndex
 {
@@ -235,10 +243,10 @@
 //    {
 //        //需要计算  页面的信息
 //        
-        NSInteger totalWidth = [[webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.scrollWidth"] integerValue];
-//
-        NSInteger theWebSizeWidth=webView.bounds.size.width;
-        int offCountInPage = (int)((float)totalWidth/theWebSizeWidth);
+//        NSInteger totalWidth = [[webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.scrollWidth"] integerValue];
+////
+//        NSInteger theWebSizeWidth=webView.bounds.size.width;
+    int offCountInPage = (int)self.pageCount;
         //        if (offCountInPage < 0 || offCountInPage >100)
         //        {
         //            NSLog(@"11");
@@ -289,7 +297,8 @@
 //        }
 //        
 //        //页码内跳转
-        [self gotoOffYInPageWithOffYIndex:0 WithOffCountInPage:offCountInPage];
+    NSInteger pageNum = _pageNum != -1 ? _pageNum : offCountInPage;
+    [self gotoOffYInPageWithOffYIndex:pageNum WithOffCountInPage:offCountInPage];
 //
 //        self.epubVC.currentOffYIndexInPage=self.offYIndexInPage;
 //    }

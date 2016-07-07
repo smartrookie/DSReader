@@ -14,6 +14,7 @@
 
 @property (nonatomic) NSInteger chapterIndex;
 @property (nonatomic) NSInteger pageNum;
+@property (nonatomic) NSInteger pageCount;
 
 
 - (instancetype)init NS_UNAVAILABLE;
