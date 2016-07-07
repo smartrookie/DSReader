@@ -33,6 +33,8 @@
     _webView.frame = self.view.bounds;
     _webView.delegate = self;
     [self.view addSubview:_webView];
+    _webView.scrollView.scrollEnabled = NO;
+    _webView.scrollView.bounces = NO;
     
     NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
     //NSLog(@"Href == %@",href);
@@ -233,15 +235,15 @@
 //    {
 //        //需要计算  页面的信息
 //        
-//        NSInteger totalWidth = [[webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.scrollWidth"] integerValue];
-//        
-//        NSInteger theWebSizeWidth=theWebView.bounds.size.width;
-//        int offCountInPage = (int)((float)totalWidth/theWebSizeWidth);
-//        //        if (offCountInPage < 0 || offCountInPage >100)
-//        //        {
-//        //            NSLog(@"11");
-//        //        }
-//        
+        NSInteger totalWidth = [[webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.scrollWidth"] integerValue];
+//
+        NSInteger theWebSizeWidth=webView.bounds.size.width;
+        int offCountInPage = (int)((float)totalWidth/theWebSizeWidth);
+        //        if (offCountInPage < 0 || offCountInPage >100)
+        //        {
+        //            NSLog(@"11");
+        //        }
+//
 //        [self.epubVC.dictPageWithOffYCount setObject:[NSString stringWithFormat:@"%@",@(offCountInPage)] forKey:[NSString stringWithFormat:@"%@",@(self.pageRefIndex)]];
 //        
 //        //
@@ -287,10 +289,53 @@
 //        }
 //        
 //        //页码内跳转
-//        [self gotoOffYInPageWithOffYIndex:self.offYIndexInPage WithOffCountInPage:currentOffCountInPage];
-//        
+        [self gotoOffYInPageWithOffYIndex:0 WithOffCountInPage:offCountInPage];
+//
 //        self.epubVC.currentOffYIndexInPage=self.offYIndexInPage;
 //    }
+}
+
+-(int)gotoOffYInPageWithOffYIndex:(NSInteger)offyIndex WithOffCountInPage:(NSInteger)offCountInPage
+{
+    //页码内跳转
+    if(offyIndex >= offCountInPage)
+    {
+        offyIndex = offCountInPage - 1;
+    }
+    
+    
+    float pageOffset = offyIndex*self.webView.bounds.size.width;
+    
+    //NSString* goToOffsetFunc = [NSString stringWithFormat:@" function pageScroll(yOffset){ window.scroll(yOffset,0); } "];
+    NSString* goToOffsetFunc = [NSString stringWithFormat:@" function pageScroll(xOffset){ window.scroll(xOffset,0); } "];
+    NSString* goTo =[NSString stringWithFormat:@"pageScroll(%f)", pageOffset];
+    
+    [self.webView stringByEvaluatingJavaScriptFromString:goToOffsetFunc];
+    [self.webView stringByEvaluatingJavaScriptFromString:goTo];
+    
+    
+    //背景主题
+    //NSString *bodycolor= [NSString stringWithFormat:@"addCSSRule('body', 'background-color: #f6e5c3;')"];
+//    NSString *themeBodyColor=[self.epubVC.arrTheme[self.epubVC.themeIndex] objectForKey:@"bodycolor"];
+//    NSString *bodycolor= [NSString stringWithFormat:@"addCSSRule('body', 'background-color: %@;')",themeBodyColor];
+//    [self.webView stringByEvaluatingJavaScriptFromString:bodycolor];
+//    
+//    //NSString *textcolor1=[NSString stringWithFormat:@"addCSSRule('h1', 'color: #ffffff;')"];
+//    NSString *themeTextColor=[self.epubVC.arrTheme[self.epubVC.themeIndex] objectForKey:@"textcolor"];
+//    NSString *textcolor1=[NSString stringWithFormat:@"addCSSRule('h1', 'color: %@;')",themeTextColor];
+//    [self.webView stringByEvaluatingJavaScriptFromString:textcolor1];
+//    
+//    //NSString *textcolor2=[NSString stringWithFormat:@"addCSSRule('p', 'color: #ffffff;')"];
+//    NSString *textcolor2=[NSString stringWithFormat:@"addCSSRule('p', 'color: %@;')",themeTextColor];
+//    [self.webView stringByEvaluatingJavaScriptFromString:textcolor2];
+    
+    //刷新显示文本
+    //[self refresh];
+    //
+    //    //刷新 epubVC Head,Foot
+    //    [self.epubVC refreshChapterLabel];
+    
+    return 1;
 }
 
 
