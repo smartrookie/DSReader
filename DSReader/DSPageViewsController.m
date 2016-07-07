@@ -38,14 +38,7 @@
     if (self) {
         
     }
-    [self setHidesBottomBarWhenPushed:YES];
     return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)viewDidLoad {
@@ -58,8 +51,6 @@
     
     DSEpubPageView *pageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
     [self setViewControllers:@[pageView] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    
 }
 
 - (void)middleZoneTapAction:(id)sender
