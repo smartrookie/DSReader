@@ -22,7 +22,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor ds_lightGrayColor];
+    self.view.backgroundColor = [UIColor ds_whiteColor];
     
     _textView = [YYTextView new];
     _textView.frame = self.view.bounds;

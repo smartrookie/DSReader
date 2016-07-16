@@ -480,7 +480,7 @@
 				655FA86C1D24F2F1005A5A52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		655FA86D1D24F2F1005A5A52 /* Build configuration list for PBXNativeTarget "DSReader" */ = {
 			isa = XCConfigurationList;
@@ -489,7 +489,7 @@
 				655FA86F1D24F2F1005A5A52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

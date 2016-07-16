@@ -41,15 +41,23 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.delegate = self;
     self.dataSource = self;
-    
     self.view.backgroundColor = [UIColor whiteColor];
     
     DSEpubPageView *pageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
+    pageView.pageNum = 0;
+    pageView.chapterIndex = 0;
     [self setViewControllers:@[pageView] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
@@ -65,11 +73,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
-
-
 
 
 
@@ -93,14 +96,14 @@
     NSInteger oldPageCount      = oldPageView.pageCount;
     
     //正常翻页
-    if (oldPageNum < oldPageCount) {
+    if (oldPageNum < oldPageCount - 1) {
         DSEpubPageView *newPageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
         newPageView.chapterIndex = oldChapterIndex;
         newPageView.pageNum      = oldPageNum + 1;
         return newPageView;
     }
     //换章
-    else if (oldChapterIndex < _epuModel.pageRefs.count) {
+    else if (oldChapterIndex < _epuModel.pageRefs.count - 1) {
         DSEpubPageView *newPageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
         newPageView.chapterIndex = oldChapterIndex + 1;
         newPageView.pageNum      = 0;
@@ -117,18 +120,19 @@
     NSInteger oldChapterIndex   = oldPageView.chapterIndex;
     NSInteger oldPageNum        = oldPageView.pageNum;
     
-    if (oldChapterIndex == 0) return nil;
+    if (oldChapterIndex <= 0) return nil;
     
     //正常翻页
-    if (oldPageNum >= 0) {
+    if (oldPageNum > 0) {
         DSEpubPageView *newPageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
         newPageView.chapterIndex = oldChapterIndex;
         newPageView.pageNum      = oldPageNum - 1;
         return newPageView;
     }
+    //换章
     else {
         DSEpubPageView *newPageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
-        newPageView.chapterIndex = oldChapterIndex;
+        newPageView.chapterIndex = oldChapterIndex - 1;
         newPageView.pageNum      = -1;
         return newPageView;
     }

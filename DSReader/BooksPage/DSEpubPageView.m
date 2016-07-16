@@ -15,6 +15,9 @@
 @property (weak, nonatomic) EpubModel *epub;
 @property (nonatomic) DSWebView *webView;
 
+@property (strong, nonatomic) UILabel *headerLabel;
+@property (strong, nonatomic) UILabel *footerLabel;
+
 @end
 
 @implementation DSEpubPageView
@@ -28,19 +31,42 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor ds_whiteColor];
     _webView = [DSWebView new];
-    _webView.frame = self.view.bounds;
+    _webView.frame =  CGRectInset(self.view.bounds,20,40);
     _webView.delegate = self;
     [self.view addSubview:_webView];
     _webView.scrollView.scrollEnabled = NO;
     _webView.scrollView.bounces = NO;
     
     NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
-    //NSLog(@"Href == %@",href);
     
     NSURL* baseURL = [NSURL fileURLWithPath:href];
     [_webView loadHTMLString:[self htmlContentFromFile:href AddJsContent:[self jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
+    _webView.backgroundColor = self.view.backgroundColor;
+    
+    
+    _headerLabel = [UILabel new];
+    _headerLabel.left = 20;
+    _headerLabel.width = _webView.width;
+    _headerLabel.height = 10;
+    _headerLabel.bottom = _webView.top - 10;
+    _headerLabel.text = @"第一章";
+    _headerLabel.textColor = [UIColor ds_lightGrayColor];
+    _headerLabel.font = [UIFont systemFontOfSize:13];
+    [self.view addSubview:_headerLabel];
+    
+    _footerLabel = [UILabel new];
+    _footerLabel.left = 20;
+    _footerLabel.width = _webView.width;
+    _footerLabel.height = 10;
+    _footerLabel.top = _webView.bottom + 10;
+    _footerLabel.text = @"8 / 208";
+    _footerLabel.textColor = [UIColor ds_lightGrayColor];
+    _footerLabel.font = [UIFont systemFontOfSize:12];
+    _footerLabel.textAlignment = NSTextAlignmentRight;
+    [self.view addSubview:_footerLabel];
+    
 }
 
 - (NSInteger)pageCount
@@ -297,8 +323,14 @@
 //        }
 //        
 //        //页码内跳转
-    NSInteger pageNum = _pageNum != -1 ? _pageNum : offCountInPage;
-    [self gotoOffYInPageWithOffYIndex:pageNum WithOffCountInPage:offCountInPage];
+    //如果pageNum 值为 -1 ，则为最后一页
+    //NSInteger pageNum = _pageNum != -1 ? _pageNum : offCountInPage;
+    
+    if (_pageNum == -1) {
+        _pageNum = offCountInPage;
+    }
+    
+    [self gotoOffYInPageWithOffYIndex:_pageNum WithOffCountInPage:offCountInPage];
 //
 //        self.epubVC.currentOffYIndexInPage=self.offYIndexInPage;
 //    }
