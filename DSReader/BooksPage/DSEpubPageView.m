@@ -10,7 +10,7 @@
 #import "DSWebView.h"
 #import "DSEpubConfig.h"
 
-@interface DSEpubPageView ()<UIWebViewDelegate>
+@interface DSEpubPageView ()<UIWebViewDelegate,UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) EpubModel *epub;
 @property (nonatomic) DSWebView *webView;
@@ -51,30 +51,84 @@
     _headerLabel.width = _webView.width;
     _headerLabel.height = 10;
     _headerLabel.bottom = _webView.top - 10;
-    _headerLabel.text = @"第一章";
+    //_headerLabel.text = @"第一章";
     _headerLabel.textColor = [UIColor ds_lightGrayColor];
     _headerLabel.font = [UIFont systemFontOfSize:13];
     [self.view addSubview:_headerLabel];
+    _headerLabel.text = _epub.navPoints[_chapterIndex].text;
     
     _footerLabel = [UILabel new];
     _footerLabel.left = 20;
     _footerLabel.width = _webView.width;
     _footerLabel.height = 10;
     _footerLabel.top = _webView.bottom + 10;
-    _footerLabel.text = @"8 / 208";
+    //_footerLabel.text = @"8 / 208";
     _footerLabel.textColor = [UIColor ds_lightGrayColor];
     _footerLabel.font = [UIFont systemFontOfSize:12];
     _footerLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:_footerLabel];
     
+//    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
+//    longPress.numberOfTapsRequired = 1;
+//    longPress.numberOfTouchesRequired = 1;
+//    longPress.delegate = self;
+//    
+//    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapAction:)];
+//    singleTap.numberOfTapsRequired = 1;
+//    singleTap.numberOfTouchesRequired = 1;
+//    singleTap.delegate = self;
+//    
+//    [singleTap requireGestureRecognizerToFail:longPress];
+//    
+//    [_webView addGestureRecognizer:longPress];
+//    [_webView addGestureRecognizer:singleTap];
 }
+
+
+#pragma mark - UIGestureRecognizerDelegate
+
+//- (void)longPressAction:(UILongPressGestureRecognizer *)sender
+//{
+//    NSLog(@"longPress");
+//}
+//
+//- (void)singleTapAction:(UITapGestureRecognizer *)sender
+//{
+//    
+//    NSLog(@"sender = %@",NSStringFromCGPoint([sender locationInView:sender.view]));
+//    [self.parentViewController performSelector:@selector(singleTapAction:) withObject:sender afterDelay:0.1];
+//}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return YES;
+}
+
 
 - (NSInteger)pageCount
 {
     NSString *jsString = @"document.documentElement.scrollWidth";
     NSInteger chapterWidth = [[_webView stringByEvaluatingJavaScriptFromString:jsString] integerValue];
     NSInteger pageWidth=_webView.bounds.size.width;
-    return (int)((float)chapterWidth/pageWidth);
+    _pageCount = (int)((float)chapterWidth/pageWidth);
+    [self refreshFooterLabel];
+    return _pageCount;
+}
+
+- (void)refreshFooterLabel
+{
+    NSString *footer = [NSString stringWithFormat:@"%d / %d",(int)_pageNum + 1,(int)_pageCount];
+    _footerLabel.text = footer;
 }
 
 
@@ -133,13 +187,6 @@
 
 
 
-
-
-
-
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -182,23 +229,23 @@
     
     NSString *js1=@"<style>img {  max-width:100% ; }</style>\n";
     
-    //    NSArray *arrJs2=@[@"<script>"
-    //                      ,@"var mySheet = document.styleSheets[0];"
-    //                      ,@"function addCSSRule(selector, newRule){"
-    //                      ,@"if (mySheet.addRule){"
-    //                      ,@"mySheet.addRule(selector, newRule);"
-    //                      ,@"} else {"
-    //                      ,@"ruleIndex = mySheet.cssRules.length;"
-    //                      ,@"mySheet.insertRule(selector + '{' + newRule + ';}', ruleIndex);"
-    //                      ,@"}"
-    //                      ,@"}"
-    //                      ,@"addCSSRule('p', 'text-align: justify;');"
-    //                      ,@"addCSSRule('highlight', 'background-color: yellow;');"
-    //                      //,@"addCSSRule('body', '-webkit-text-size-adjust: 100%; font-size:10px;');"
-    //                      ,@"addCSSRule('body', ' font-size:18px;');"
-    //                      ,@"addCSSRule('body', ' margin:2.2em 5%% 0 5%%;');"   //上，右，下，左 顺时针
-    //                      ,@"addCSSRule('html', 'padding: 0px; height: 480px; -webkit-column-gap: 0px; -webkit-column-width: 320px;');"
-    //                      ,@"</script>"];
+//        NSArray *arrJs2=@[@"<script>"
+//                          ,@"var mySheet = document.styleSheets[0];"
+//                          ,@"function addCSSRule(selector, newRule){"
+//                          ,@"if (mySheet.addRule){"
+//                          ,@"mySheet.addRule(selector, newRule);"
+//                          ,@"} else {"
+//                          ,@"ruleIndex = mySheet.cssRules.length;"
+//                          ,@"mySheet.insertRule(selector + '{' + newRule + ';}', ruleIndex);"
+//                          ,@"}"
+//                          ,@"}"
+//                          ,@"addCSSRule('p', 'text-align: justify;');"
+//                          ,@"addCSSRule('highlight', 'background-color: yellow;');"
+//                          ,@"addCSSRule('body', '-webkit-text-size-adjust: 100%; font-size:10px;');"
+//                          ,@"addCSSRule('body', ' font-size:18px;');"
+//                          ,@"addCSSRule('body', ' margin:2.2em 5%% 0 5%%;');"   //上，右，下，左 顺时针
+//                          ,@"addCSSRule('html', 'padding: 0px; height: 480px; -webkit-column-gap: 0px; -webkit-column-width: 320px;');"
+//                          ,@"</script>"];
     
     NSMutableArray *arrJs=[NSMutableArray array];
     [arrJs addObject:@"<script>"];
@@ -327,10 +374,11 @@
     //NSInteger pageNum = _pageNum != -1 ? _pageNum : offCountInPage;
     
     if (_pageNum == -1) {
-        _pageNum = offCountInPage;
+        _pageNum = offCountInPage - 1;
     }
     
     [self gotoOffYInPageWithOffYIndex:_pageNum WithOffCountInPage:offCountInPage];
+    [self refreshFooterLabel];
 //
 //        self.epubVC.currentOffYIndexInPage=self.offYIndexInPage;
 //    }
