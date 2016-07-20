@@ -26,6 +26,7 @@
 		657579E21D2A4AFA00CAEADB /* EpubParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 657579E11D2A4AFA00CAEADB /* EpubParser.m */; };
 		65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D8149C1D266C3600832AC2 /* UIColor+ds.m */; };
 		65D814A11D26862400832AC2 /* DSTextPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D814A01D26862400832AC2 /* DSTextPageView.m */; };
+		DEBAC4221D3FCF1000AE23F6 /* DSGridShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEBAC4211D3FCF1000AE23F6 /* DSGridShelfViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,8 @@
 		65D814A01D26862400832AC2 /* DSTextPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSTextPageView.m; sourceTree = "<group>"; };
 		9C41F3B2C4951571653080E9 /* Pods-DSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.debug.xcconfig"; sourceTree = "<group>"; };
 		AFC71F64E8D1C1283A126838 /* Pods-DSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.release.xcconfig"; sourceTree = "<group>"; };
+		DEBAC4201D3FCF1000AE23F6 /* DSGridShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSGridShelfViewController.h; sourceTree = "<group>"; };
+		DEBAC4211D3FCF1000AE23F6 /* DSGridShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSGridShelfViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 				655FA8831D250970005A5A52 /* DSBookshelfController.m */,
 				655FA8851D250999005A5A52 /* DSListShelfController.h */,
 				655FA8861D250999005A5A52 /* DSListShelfController.m */,
+				DEBAC4201D3FCF1000AE23F6 /* DSGridShelfViewController.h */,
+				DEBAC4211D3FCF1000AE23F6 /* DSGridShelfViewController.m */,
 			);
 			name = "Bookshelf(书架)";
 			path = Bookshelf;
@@ -331,6 +336,7 @@
 				657579E21D2A4AFA00CAEADB /* EpubParser.m in Sources */,
 				65610A9D1D2CB3AB00227711 /* DSWebView.m in Sources */,
 				65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */,
+				DEBAC4221D3FCF1000AE23F6 /* DSGridShelfViewController.m in Sources */,
 				655FA87B1D24FEE2005A5A52 /* DSPageViewsController.m in Sources */,
 				655FA8841D250970005A5A52 /* DSBookshelfController.m in Sources */,
 				65610AA31D2CF76B00227711 /* DSEpubConfig.m in Sources */,

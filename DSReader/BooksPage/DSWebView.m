@@ -33,7 +33,7 @@
 
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
-    NSLog(@"%@",NSStringFromSelector(action));
+    //NSLog(@"%@",NSStringFromSelector(action));
     if (action == @selector(copyAction:)) {
         return YES;
     } else {

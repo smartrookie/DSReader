@@ -8,10 +8,12 @@
 
 #import "DSBookshelfController.h"
 #import "DSListShelfController.h"
+#import "DSGridShelfViewController.h"
 
 @interface DSBookshelfController ()
 {
     DSListShelfController *_listShelfController;
+    DSGridShelfViewController *_gridShelfController;
 }
 
 @end
@@ -31,11 +33,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _listShelfController = [DSListShelfController new];
-    _listShelfController.view.bounds = self.view.bounds;
-    [self addChildViewController:_listShelfController];
-    [self.view addSubview:_listShelfController.view];
+//    _listShelfController = [DSListShelfController new];
+//    _listShelfController.view.bounds = self.view.bounds;
+//    [self addChildViewController:_listShelfController];
+//    [self.view addSubview:_listShelfController.view];
     
+    
+    _gridShelfController = [DSGridShelfViewController new];
+    _gridShelfController.view.bounds = self.view.bounds;
+    [self addChildViewController:_gridShelfController];
+    [self.view addSubview:_gridShelfController.view];
     
     
     
