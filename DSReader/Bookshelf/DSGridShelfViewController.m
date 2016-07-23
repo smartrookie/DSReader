@@ -8,6 +8,9 @@
 
 #import "DSGridShelfViewController.h"
 #import "DSGridBookCell.h"
+#import "EpubParser.h"
+#import "EpubModel.h"
+#import "DSPageViewsController.h"
 
 @interface DSGridShelfViewController ()<UICollectionViewDelegateFlowLayout>
 {
@@ -82,7 +85,21 @@ static NSString * const reuseIdentifier = @"Cell";
     return cell;
 }
 
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    EpubModel *epub = [EpubModel new];
+    
+    EpubParser *parser = [EpubParser new];
+    
+    if ([parser unzipEpub:epub]) {
+        NSLog(@"解压成功");
+    } else {
+        NSLog(@"解压失败");
+    }
+    
+    DSPageViewsController *pageVctrl = [[DSPageViewsController alloc] initEpubModel:epub];
+    [self presentViewController:pageVctrl animated:YES completion:nil];
+}
 
 #pragma mark <UICollectionViewDelegate>
 
