@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class EpubModel;
 
 @interface DSGridBookCell : UICollectionViewCell
+
+@property (strong, nonatomic) EpubModel *bookModel;
 
 @end

@@ -79,24 +79,25 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    DSGridBookCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     // Configure the cell
+    static EpubModel *book;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        book = [EpubModel new];
+        EpubParser *parser = [EpubParser new];
+        [parser unzipEpub:book];
+    });
+    
+    cell.bookModel  = book;
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    EpubModel *epub = [EpubModel new];
-    
-    EpubParser *parser = [EpubParser new];
-    
-    if ([parser unzipEpub:epub]) {
-        NSLog(@"解压成功");
-    } else {
-        NSLog(@"解压失败");
-    }
-    
+    DSGridBookCell *cell = (DSGridBookCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    EpubModel *epub = cell.bookModel;
     DSPageViewsController *pageVctrl = [[DSPageViewsController alloc] initEpubModel:epub];
     [self presentViewController:pageVctrl animated:YES completion:nil];
 }

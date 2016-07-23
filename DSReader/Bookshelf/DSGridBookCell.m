@@ -7,6 +7,7 @@
 //
 
 #import "DSGridBookCell.h"
+#import "EpubModel.h"
 
 @interface DSGridBookCell()
 
@@ -30,6 +31,16 @@
         _coverView.backgroundColor = [UIColor ds_lightGrayColor];
     }
     return self;
+}
+
+- (void)setBookModel:(EpubModel *)bookModel
+{
+    _bookModel = bookModel;
+    
+    
+    
+    
+    
 }
 
 - (instancetype)init

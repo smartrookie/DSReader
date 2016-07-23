@@ -51,6 +51,8 @@
 @property (nonatomic) NSString *language;
 @property (nonatomic) NSString *dcdescription;
 
+@property (nonatomic) NSString *coverPath; //封面路径
+
 // 目录章节
 @property (nonatomic) NSMutableArray<NavPoint *> *navPoints;
 @property (nonatomic) NSMutableArray<PageRef *>  *pageRefs;

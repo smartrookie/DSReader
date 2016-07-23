@@ -243,11 +243,13 @@
         //--------------------------------------------------------------------------------------------//
         
     }
-    
-    
-    
-    
-    
+    //拿到首页当然封面
+    NSString *idRef = epub.pageRefs.firstObject.idref;
+    for (PageItem *item in epub.pageItems) {
+        if ([item.itemId isEqualToString:idRef]) {
+            epub.coverPath = [[[epub.opf_file stringByDeletingLastPathComponent] stringByAppendingString:@"/"] stringByAppendingString:item.href];
+        }
+    }
     
     NSLog(@"Epub description = %@",epub.modelDescription);
     return YES;
