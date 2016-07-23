@@ -44,7 +44,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // Register cell classes
     [self.collectionView registerClass:[DSGridBookCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    self.collectionView.bounces = YES;
+    self.collectionView.alwaysBounceVertical = YES;
     // Do any additional setup after loading the view.
 }
 
@@ -77,8 +77,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    cell.backgroundColor = [UIColor ds_blueColor];
     // Configure the cell
     
     return cell;

@@ -27,6 +27,7 @@
         _coverView.left = (frame.size.width - _coverView.width ) / 2;
         _coverView.bottom = frame.size.height;
         [self.contentView addSubview:_coverView];
+        _coverView.backgroundColor = [UIColor ds_lightGrayColor];
     }
     return self;
 }
