@@ -7,8 +7,9 @@
 //
 
 #import "DSGridShelfViewController.h"
+#import "DSGridBookCell.h"
 
-@interface DSGridShelfViewController ()
+@interface DSGridShelfViewController ()<UICollectionViewDelegateFlowLayout>
 {
     UICollectionViewLayout *_collectionLayout;
 }
@@ -23,7 +24,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (instancetype)init
 {
-    _collectionLayout = [[UICollectionViewLayout alloc] init];
+    _collectionLayout = [[UICollectionViewFlowLayout alloc] init];
     self = [super initWithCollectionViewLayout:_collectionLayout];
     if (self) {
         
@@ -35,13 +36,15 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.collectionView.backgroundColor = [UIColor ds_whiteColor];
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[DSGridBookCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
+    self.collectionView.bounces = YES;
     // Do any additional setup after loading the view.
 }
 
@@ -63,21 +66,25 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 0;
+    return 10;
 }
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
+    cell.backgroundColor = [UIColor ds_blueColor];
     // Configure the cell
     
     return cell;
 }
+
+
 
 #pragma mark <UICollectionViewDelegate>
 
@@ -109,5 +116,20 @@ static NSString * const reuseIdentifier = @"Cell";
 	
 }
 */
+
+#pragma mark --UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat width = ( SCREEN_WIDTH - 10*4 ) / 3 ;
+    return CGSizeMake(width, 120);
+}
+
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(10, 10, 10, 10);
+}
+
 
 @end

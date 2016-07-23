@@ -27,6 +27,8 @@
 		65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D8149C1D266C3600832AC2 /* UIColor+ds.m */; };
 		65D814A11D26862400832AC2 /* DSTextPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D814A01D26862400832AC2 /* DSTextPageView.m */; };
 		DEBAC4221D3FCF1000AE23F6 /* DSGridShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEBAC4211D3FCF1000AE23F6 /* DSGridShelfViewController.m */; };
+		DEFA1A7F1D43B22E00B2E8A6 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFA1A7E1D43B22E00B2E8A6 /* PersonalCenterViewController.m */; };
+		DEFA1A831D43BD9F00B2E8A6 /* DSGridBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFA1A821D43BD9F00B2E8A6 /* DSGridBookCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,10 @@
 		AFC71F64E8D1C1283A126838 /* Pods-DSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.release.xcconfig"; sourceTree = "<group>"; };
 		DEBAC4201D3FCF1000AE23F6 /* DSGridShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSGridShelfViewController.h; sourceTree = "<group>"; };
 		DEBAC4211D3FCF1000AE23F6 /* DSGridShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSGridShelfViewController.m; sourceTree = "<group>"; };
+		DEFA1A7D1D43B22E00B2E8A6 /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
+		DEFA1A7E1D43B22E00B2E8A6 /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
+		DEFA1A811D43BD9F00B2E8A6 /* DSGridBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSGridBookCell.h; sourceTree = "<group>"; };
+		DEFA1A821D43BD9F00B2E8A6 /* DSGridBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSGridBookCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,7 @@
 				65D8149E1D26857D00832AC2 /* BooksPage */,
 				655FA8881D2511ED005A5A52 /* BooksDemo */,
 				655FA8811D250970005A5A52 /* Bookshelf(书架) */,
+				DEFA1A7C1D43B1EC00B2E8A6 /* PersonalCenter */,
 				655FA8651D24F2F1005A5A52 /* Assets.xcassets */,
 				655FA8671D24F2F1005A5A52 /* LaunchScreen.storyboard */,
 				655FA86A1D24F2F1005A5A52 /* Info.plist */,
@@ -154,6 +161,8 @@
 				655FA8861D250999005A5A52 /* DSListShelfController.m */,
 				DEBAC4201D3FCF1000AE23F6 /* DSGridShelfViewController.h */,
 				DEBAC4211D3FCF1000AE23F6 /* DSGridShelfViewController.m */,
+				DEFA1A811D43BD9F00B2E8A6 /* DSGridBookCell.h */,
+				DEFA1A821D43BD9F00B2E8A6 /* DSGridBookCell.m */,
 			);
 			name = "Bookshelf(书架)";
 			path = Bookshelf;
@@ -207,6 +216,15 @@
 				2009CF071B75BF403DA50DBA /* libPods-DSReader.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DEFA1A7C1D43B1EC00B2E8A6 /* PersonalCenter */ = {
+			isa = PBXGroup;
+			children = (
+				DEFA1A7D1D43B22E00B2E8A6 /* PersonalCenterViewController.h */,
+				DEFA1A7E1D43B22E00B2E8A6 /* PersonalCenterViewController.m */,
+			);
+			path = PersonalCenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +356,7 @@
 				65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */,
 				DEBAC4221D3FCF1000AE23F6 /* DSGridShelfViewController.m in Sources */,
 				655FA87B1D24FEE2005A5A52 /* DSPageViewsController.m in Sources */,
+				DEFA1A831D43BD9F00B2E8A6 /* DSGridBookCell.m in Sources */,
 				655FA8841D250970005A5A52 /* DSBookshelfController.m in Sources */,
 				65610AA31D2CF76B00227711 /* DSEpubConfig.m in Sources */,
 				655FA8721D24FCE0005A5A52 /* DSTabBarController.m in Sources */,
@@ -345,6 +364,7 @@
 				655FA8871D250999005A5A52 /* DSListShelfController.m in Sources */,
 				655FA85B1D24F2F1005A5A52 /* main.m in Sources */,
 				65610AA01D2CB45200227711 /* DSEpubPageView.m in Sources */,
+				DEFA1A7F1D43B22E00B2E8A6 /* PersonalCenterViewController.m in Sources */,
 				65D814A11D26862400832AC2 /* DSTextPageView.m in Sources */,
 				657579DE1D2A470400CAEADB /* EpubModel.m in Sources */,
 			);

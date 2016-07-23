@@ -9,6 +9,7 @@
 #import "DSTabBarController.h"
 #import "DSNavigationController.h"
 #import "DSBookshelfController.h"
+#import "PersonalCenterViewController.h"
 
 @implementation DSTabBarController
 
@@ -16,9 +17,14 @@
     [super viewDidLoad];
     
     DSBookshelfController *pageCtrl = [DSBookshelfController new];
-    DSNavigationController *navi = [[DSNavigationController alloc] initWithRootViewController:pageCtrl];
+    DSNavigationController *naviPage = [[DSNavigationController alloc] initWithRootViewController:pageCtrl];
     
-    [self addChildViewController:navi];
+    PersonalCenterViewController *person = [PersonalCenterViewController new];
+    DSNavigationController *naviPerson = [[DSNavigationController alloc] initWithRootViewController:person];
+    
+    [self addChildViewController:naviPage];
+    [self addChildViewController:naviPerson];
+    
 }
 
 @end
