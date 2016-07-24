@@ -10,4 +10,6 @@ pod 'MBProgressHUD', '~> 0.9.2'
 
 pod 'GDataXML-HTML', '~> 1.3.0'
 
+pod 'FMDB', '~> 2.6.2'
+
 end
