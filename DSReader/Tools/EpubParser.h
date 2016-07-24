@@ -15,4 +15,7 @@
 - (Boolean)unzipEpub:(EpubModel *)epub;
 
 
++ (NSString*)jsContentWithViewRect:(CGRect)rectView;
++ (NSString*)htmlContentFromFile:(NSString*)fileFullPath AddJsContent:(NSString*)jsContent;
+
 @end

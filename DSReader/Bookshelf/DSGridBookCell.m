@@ -8,10 +8,11 @@
 
 #import "DSGridBookCell.h"
 #import "EpubModel.h"
+#import "EpubParser.h"
 
 @interface DSGridBookCell()
 
-@property (strong, nonatomic) UIImageView *coverView;
+@property (strong, nonatomic) UIWebView *coverView;
 
 @end
 
@@ -21,7 +22,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _coverView = [UIImageView new];
+        _coverView = [UIWebView new];
         _coverView.size = CGSizeMake(90, 110);
         _coverView.backgroundColor = [UIColor ds_whiteColor];
         
@@ -29,6 +30,7 @@
         _coverView.bottom = frame.size.height;
         [self.contentView addSubview:_coverView];
         _coverView.backgroundColor = [UIColor ds_lightGrayColor];
+        _coverView.userInteractionEnabled = NO;
     }
     return self;
 }
@@ -36,20 +38,10 @@
 - (void)setBookModel:(EpubModel *)bookModel
 {
     _bookModel = bookModel;
+    NSURL *url = [NSURL fileURLWithPath:bookModel.coverPath];
+    [_coverView loadHTMLString:[EpubParser htmlContentFromFile:bookModel.coverPath AddJsContent:[EpubParser jsContentWithViewRect:_coverView.bounds]] baseURL:url];
     
     
-    
-    
-    
-}
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
 }
 
 @end
