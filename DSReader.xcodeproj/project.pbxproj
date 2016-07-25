@@ -26,6 +26,8 @@
 		657579E21D2A4AFA00CAEADB /* EpubParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 657579E11D2A4AFA00CAEADB /* EpubParser.m */; };
 		65D8149D1D266C3600832AC2 /* UIColor+ds.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D8149C1D266C3600832AC2 /* UIColor+ds.m */; };
 		65D814A11D26862400832AC2 /* DSTextPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D814A01D26862400832AC2 /* DSTextPageView.m */; };
+		DEA266EF1D46503A00BD15D3 /* DSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA266EE1D46503A00BD15D3 /* DSDatabase.m */; };
+		DEA266F21D46548000BD15D3 /* DSCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA266F11D46548000BD15D3 /* DSCommon.m */; };
 		DEBAC4221D3FCF1000AE23F6 /* DSGridShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEBAC4211D3FCF1000AE23F6 /* DSGridShelfViewController.m */; };
 		DEFA1A7F1D43B22E00B2E8A6 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFA1A7E1D43B22E00B2E8A6 /* PersonalCenterViewController.m */; };
 		DEFA1A831D43BD9F00B2E8A6 /* DSGridBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFA1A821D43BD9F00B2E8A6 /* DSGridBookCell.m */; };
@@ -69,6 +71,10 @@
 		65D814A01D26862400832AC2 /* DSTextPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSTextPageView.m; sourceTree = "<group>"; };
 		9C41F3B2C4951571653080E9 /* Pods-DSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.debug.xcconfig"; sourceTree = "<group>"; };
 		AFC71F64E8D1C1283A126838 /* Pods-DSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-DSReader/Pods-DSReader.release.xcconfig"; sourceTree = "<group>"; };
+		DEA266ED1D46503A00BD15D3 /* DSDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSDatabase.h; sourceTree = "<group>"; };
+		DEA266EE1D46503A00BD15D3 /* DSDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSDatabase.m; sourceTree = "<group>"; };
+		DEA266F01D46548000BD15D3 /* DSCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSCommon.h; sourceTree = "<group>"; };
+		DEA266F11D46548000BD15D3 /* DSCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSCommon.m; sourceTree = "<group>"; };
 		DEBAC4201D3FCF1000AE23F6 /* DSGridShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSGridShelfViewController.h; sourceTree = "<group>"; };
 		DEBAC4211D3FCF1000AE23F6 /* DSGridShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSGridShelfViewController.m; sourceTree = "<group>"; };
 		DEFA1A7D1D43B22E00B2E8A6 /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
@@ -129,6 +135,9 @@
 				655FA8711D24FCE0005A5A52 /* DSTabBarController.m */,
 				65610AA11D2CF76B00227711 /* DSEpubConfig.h */,
 				65610AA21D2CF76B00227711 /* DSEpubConfig.m */,
+				DEA266F01D46548000BD15D3 /* DSCommon.h */,
+				DEA266F11D46548000BD15D3 /* DSCommon.m */,
+				DEA266EC1D46502C00BD15D3 /* DB */,
 				657579DF1D2A482A00CAEADB /* Tools */,
 				657579DB1D2A46BF00CAEADB /* Model */,
 				65D8149E1D26857D00832AC2 /* BooksPage */,
@@ -216,6 +225,15 @@
 				2009CF071B75BF403DA50DBA /* libPods-DSReader.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DEA266EC1D46502C00BD15D3 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				DEA266ED1D46503A00BD15D3 /* DSDatabase.h */,
+				DEA266EE1D46503A00BD15D3 /* DSDatabase.m */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		DEFA1A7C1D43B1EC00B2E8A6 /* PersonalCenter */ = {
@@ -366,7 +384,9 @@
 				65610AA01D2CB45200227711 /* DSEpubPageView.m in Sources */,
 				DEFA1A7F1D43B22E00B2E8A6 /* PersonalCenterViewController.m in Sources */,
 				65D814A11D26862400832AC2 /* DSTextPageView.m in Sources */,
+				DEA266F21D46548000BD15D3 /* DSCommon.m in Sources */,
 				657579DE1D2A470400CAEADB /* EpubModel.m in Sources */,
+				DEA266EF1D46503A00BD15D3 /* DSDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

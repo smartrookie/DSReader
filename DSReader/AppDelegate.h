@@ -13,5 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 
++ (NSString *)documentsPath;
+
 @end
 

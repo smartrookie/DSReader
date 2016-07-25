@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DSTabBarController.h"
+#import "DSDatabase.h"
 
 @interface AppDelegate ()
 {
@@ -20,6 +21,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [[DSDatabase instance] initDatabase];
+    
     
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -52,6 +56,35 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
++ (NSString *)documentsPath
+{
+    static NSString *path = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^
+                  {
+                      if (iosMajorVersion() >= 8)
+                      {
+                          NSString *groupName = [@"group." stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
+                          
+                          NSURL *groupURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:groupName];
+                          if (groupURL != nil)
+                          {
+                              NSString *documentsPath = [[groupURL path] stringByAppendingPathComponent:@"Documents"];
+                              
+                              [[NSFileManager defaultManager] createDirectoryAtPath:documentsPath withIntermediateDirectories:true attributes:nil error:NULL];
+                              
+                              path = documentsPath;
+                          }
+                          else
+                              path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0];
+                      }
+                      else
+                          path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0];
+                  });
+    
+    return path;
 }
 
 @end
