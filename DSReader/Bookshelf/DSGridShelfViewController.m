@@ -11,6 +11,7 @@
 #import "EpubParser.h"
 #import "EpubModel.h"
 #import "DSPageViewsController.h"
+#import "DSDatabase.h"
 
 @interface DSGridShelfViewController ()<UICollectionViewDelegateFlowLayout>
 {
@@ -87,6 +88,8 @@ static NSString * const reuseIdentifier = @"Cell";
         book = [EpubModel new];
         EpubParser *parser = [EpubParser new];
         [parser unzipEpub:book];
+//        - (void)storeEpubModel
+        [[DSDatabase instance] storeEpubModel:book];
     });
     
     cell.bookModel  = book;

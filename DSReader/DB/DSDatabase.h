@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+@class EpubModel;
 
 @interface DSDatabase : NSObject
 
 + (instancetype)instance;
 
 - (void)initDatabase;
+
+- (void)storeEpubModel:(EpubModel *)model;
 
 @end

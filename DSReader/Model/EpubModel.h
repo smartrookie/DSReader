@@ -35,6 +35,7 @@
 
 @interface EpubModel : NSObject
 
+@property (nonatomic) NSInteger eid;
 @property (nonatomic) NSString *path;
 @property (nonatomic) NSString *unzipPath;
 @property (nonatomic) NSString *manifestPath;
@@ -57,6 +58,13 @@
 @property (nonatomic) NSMutableArray<NavPoint *> *navPoints;
 @property (nonatomic) NSMutableArray<PageRef *>  *pageRefs;
 @property (nonatomic) NSMutableArray<PageItem *> *pageItems;
+
+
+
+
+
+
+
 
 
 @end
