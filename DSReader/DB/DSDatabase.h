@@ -17,4 +17,13 @@
 
 - (void)storeEpubModel:(EpubModel *)model;
 
+
+- (NSArray *)allEpubModel;
+
+
+
+
+
+
+
 @end

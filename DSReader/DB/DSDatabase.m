@@ -142,6 +142,37 @@ DSDatabase *TGDatabaseInstance()
     }
 }
 
+- (NSArray *)allEpubModel
+{
+    NSMutableArray *array = @[].mutableCopy;
+    
+    static NSString *sql = @"SELECT * FROM epub_model";
+    FMResultSet *result = [_database executeQuery:sql];
+    while (result.next) {
+        EpubModel *model = [EpubModel new];
+        
+        model.eid           = [result intForColumn:@"eid"];
+        model.path          = [result stringForColumn:@"path"];
+        model.unzipPath     = [result stringForColumn:@"unzipPath"];
+        model.manifestPath  = [result stringForColumn:@"manifestPath"];
+        model.opf_file      = [result stringForColumn:@"opf_file"];
+        model.ncx_file      = [result stringForColumn:@"ncx_file"];
+        model.identifier    = [result stringForColumn:@"identifier"];
+        model.title         = [result stringForColumn:@"title"];
+        model.creator       = [result stringForColumn:@"creator"];
+        model.contributor   = [result stringForColumn:@"contributor"];
+        model.publisher     = [result stringForColumn:@"publisher"];
+        model.date          = [result stringForColumn:@"date"];
+        model.subject       = [result stringForColumn:@"subject"];
+        model.language      = [result stringForColumn:@"language"];
+        model.dcdescription = [result stringForColumn:@"dcdescription"];
+        model.coverPath     = [result stringForColumn:@"coverPath"]; //封面路径
+        [array addObject:model];
+    }
+    
+    return array;
+}
+
 #pragma mark - database version
 
 - (void)createDataBaseVersion0

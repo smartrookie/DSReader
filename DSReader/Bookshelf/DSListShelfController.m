@@ -10,10 +10,11 @@
 #import "DSPageViewsController.h"
 #import "EpubModel.h"
 #import "EpubParser.h"
+#import "DSDatabase.h"
 
 @interface DSListShelfController ()
 
-@property (nonatomic) NSMutableArray *dataSource;
+@property (nonatomic) NSArray *dataSource;
 
 @end
 
@@ -28,9 +29,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView registerClass:[DSListShelfCell class] forCellReuseIdentifier:@"cell"];
-    _dataSource = @[].mutableCopy;
-    [_dataSource addObject:@"yiqiantulong.epub"];
-    [_dataSource addObject:@"yiqiantulong.txt"];
+
+    _dataSource = [[DSDatabase instance] allEpubModel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,15 +64,15 @@
     
     if (indexPath.row == 0) {
         
-        EpubModel *epub = [EpubModel new];
+        EpubModel *epub = _dataSource[indexPath.row];
         
-        EpubParser *parser = [EpubParser new];
-        
-        if ([parser unzipEpub:epub]) {
-            NSLog(@"解压成功");
-        } else {
-            NSLog(@"解压失败");
-        }
+//        EpubParser *parser = [EpubParser new];
+//        
+//        if ([parser unzipEpub:epub]) {
+//            NSLog(@"解压成功");
+//        } else {
+//            NSLog(@"解压失败");
+//        }
         
         
         

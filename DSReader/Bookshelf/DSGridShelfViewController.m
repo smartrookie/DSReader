@@ -18,6 +18,7 @@
     UICollectionViewLayout *_collectionLayout;
 }
 
+@property (nonatomic, strong) NSArray *dataSource;
 
 @end
 
@@ -50,6 +51,9 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.collectionView.alwaysBounceVertical = YES;
     // Do any additional setup after loading the view.
+    
+    
+    _dataSource = [[DSDatabase instance] allEpubModel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,22 +79,24 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return _dataSource.count;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     DSGridBookCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     // Configure the cell
-    static EpubModel *book;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        book = [EpubModel new];
-        EpubParser *parser = [EpubParser new];
-        [parser unzipEpub:book];
-//        - (void)storeEpubModel
-        [[DSDatabase instance] storeEpubModel:book];
-    });
+//    static EpubModel *book;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        book = [EpubModel new];
+//        EpubParser *parser = [EpubParser new];
+//        [parser unzipEpub:book];
+////        - (void)storeEpubModel
+//        [[DSDatabase instance] storeEpubModel:book];
+//    });
+    
+    EpubModel *book = _dataSource[indexPath.row];
     
     cell.bookModel  = book;
     
