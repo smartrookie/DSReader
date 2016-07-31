@@ -60,7 +60,7 @@
 @property (nonatomic) NSMutableArray<PageItem *> *pageItems;
 
 
-
+- (NSString *)absolutePath:(NSString *)subPath;
 
 
 

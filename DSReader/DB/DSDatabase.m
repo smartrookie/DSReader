@@ -10,6 +10,7 @@
 #import "FMDB.h"
 #import "AppDelegate.h"
 #import "EpubModel.h"
+#import "EpubParser.h"
 
 static const char *databaseQueueSpecific = "com.dsreader.databasequeue";
 static dispatch_queue_t databaseDispatchQueue = nil;
@@ -168,10 +169,66 @@ DSDatabase *TGDatabaseInstance()
         model.dcdescription = [result stringForColumn:@"dcdescription"];
         model.coverPath     = [result stringForColumn:@"coverPath"]; //封面路径
         [array addObject:model];
+        
+        model.pageRefs = [self pageRefsByEpubId:@(model.eid).stringValue].mutableCopy;
+        model.pageItems = [self pageItemsByEpubId:@(model.eid).stringValue].mutableCopy;
+        model.navPoints = [self navPointsByEpubId:@(model.eid).stringValue].mutableCopy;
     }
     
     return array;
 }
+
+- (NSArray<NavPoint *> *)navPointsByEpubId:(NSString *)epuId
+{
+    NSMutableArray *array = @[].mutableCopy;
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM navPoine_model WHERE eid=%@",epuId];
+    
+    FMResultSet *result = [_database executeQuery:sql];
+    while (result.next) {
+        NavPoint *model = [NavPoint new];
+        model.navId     = [result stringForColumn:@"navId"];
+        model.playOrder = [result stringForColumn:@"playOrder"];
+        model.text      = [result stringForColumn:@"text"];
+        model.src       = [result stringForColumn:@"src"];
+        [array addObject:model];
+    }
+    return array;
+}
+
+- (NSArray *)pageRefsByEpubId:(NSString *)epuId
+{
+    NSMutableArray *array = @[].mutableCopy;
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM pageRef_model WHERE eid='%@'",epuId];
+    
+    FMResultSet *result = [_database executeQuery:sql];
+    while (result.next) {
+        PageRef *model = [PageRef new];
+        model.idref     = [result stringForColumn:@"idref"];
+        [array addObject:model];
+    }
+    
+    
+    return array;
+}
+- (NSArray *)pageItemsByEpubId:(NSString *)epuId
+{
+    NSMutableArray *array = @[].mutableCopy;
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM pageItem_model WHERE eid='%@'",epuId];
+    
+    FMResultSet *result = [_database executeQuery:sql];
+    while (result.next) {
+        PageItem *model = [PageItem new];
+        model.itemId    = [result stringForColumn:@"itemId"];
+        model.href      = [result stringForColumn:@"href"];
+        [array addObject:model];
+    }
+    
+    
+    return array;
+}
+
+
 
 #pragma mark - database version
 
@@ -181,7 +238,7 @@ DSDatabase *TGDatabaseInstance()
     
     [_database executeUpdate:epub_modelSql];
     
-    NSString *navPoint_modelSql = @"CREATE TABLE IF NOT EXISTS navPoine_model (navId TEXT NOT NULL, eid INTEGER NOT NULL, playOder TEXT, text TEXT, src TEXT, PRIMARY KEY(navId,eid));";
+    NSString *navPoint_modelSql = @"CREATE TABLE IF NOT EXISTS navPoine_model (navId TEXT NOT NULL, eid INTEGER NOT NULL, playOrder TEXT, text TEXT, src TEXT, PRIMARY KEY(navId,eid));";
     
     [_database executeUpdate:navPoint_modelSql];
     
@@ -192,6 +249,11 @@ DSDatabase *TGDatabaseInstance()
     NSString *pageRef_modelSql = @"CREATE TABLE IF NOT EXISTS pageRef_model (idref TEXT NOT NULL, eid INTEGER NOT NULL, PRIMARY KEY(idref,eid))";
     
     [_database executeUpdate:pageRef_modelSql];
+    
+    EpubModel *book= [EpubModel new];
+    EpubParser *parser = [EpubParser new];
+    [parser unzipEpub:book];
+    [[DSDatabase instance] storeEpubModel:book];
 }
 
 
@@ -204,6 +266,22 @@ DSDatabase *TGDatabaseInstance()
     if (result.next) {
         model.eid = [result intForColumnIndex:0];
     }
+    
+    static NSString *pageRefSql = @"INSERT OR REPLACE INTO pageRef_model (idref, eid) VALUES (?,?)";
+    for (PageRef * ref in model.pageRefs) {
+        [_database executeUpdate:pageRefSql,ref.idref,@(model.eid)];
+    }
+    
+    static NSString *pageItemSql = @"INSERT OR REPLACE INTO pageItem_model (itemId,href,eid) VALUES (?,?,?)";
+    for (PageItem *item in model.pageItems) {
+         [_database executeUpdate:pageItemSql,item.itemId,item.href,@(model.eid)];
+    }
+    
+    static NSString *naviPointSql = @"INSERT OR REPLACE INTO navPoine_model (navId,playOrder,text,src,eid) VALUES (?,?,?,?,?)";
+    for (NavPoint *nav in model.navPoints) {
+        [_database executeUpdate:naviPointSql,nav.navId,nav.playOrder,nav.text,nav.src,@(model.eid)];
+    }
+    
     NSLog(@"insert success and new eid = %d",(int)model.eid);
     
 }

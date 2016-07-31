@@ -12,6 +12,8 @@
 
 @interface EpubParser : NSObject
 
++ (NSString *)temUnzipEpubPathAppentPath:(NSString *)subPath;
+
 - (Boolean)unzipEpub:(EpubModel *)epub;
 
 

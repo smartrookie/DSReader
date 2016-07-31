@@ -20,6 +20,9 @@
 
 - (NSArray *)allEpubModel;
 
+- (NSArray *)navPointsByEpubId:(NSString *)epuId;
+- (NSArray *)pageRefsByEpubId:(NSString *)epuId;;
+- (NSArray *)pageItemsByEpubId:(NSString *)epuId;
 
 
 

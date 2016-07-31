@@ -11,6 +11,7 @@
 #import "EpubModel.h"
 #import "GDataXMLNode.h"
 #import "DSEpubConfig.h"
+#import "AppDelegate.h"
 
 @interface EpubParser()
 
@@ -21,14 +22,30 @@
 
 @implementation EpubParser
 
++ (NSString *)temUnzipEpubPathAppentPath:(NSString *)subPath
+{
+    EpubParser *parser = [EpubParser new];
+    return [parser temUnzipEpubPathAppentPath:subPath];
+}
+
+- (NSString *)temUnzipEpubPathAppentPath:(NSString *)subPath
+{
+    return [[self temUnzipEpubPath] stringByAppendingPathComponent:subPath];
+}
+
 - (NSString *)temUnzipEpubPath
 {
     if (_temUnzipEpubPath) return _temUnzipEpubPath;
     else
     {
-        NSString *library   = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
-        NSString *caches    = [library stringByAppendingPathComponent:@"Caches"];
-        NSString *epubCache = [caches stringByAppendingPathComponent:@"epubcache"];
+//        NSString *library   = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
+//        NSString *caches    = [library stringByAppendingPathComponent:@"Caches"];
+//        NSString *epubCache = [caches stringByAppendingPathComponent:@"epubcache"];
+//        _temUnzipEpubPath   = [epubCache stringByAppendingString:@"/"];
+//        return _temUnzipEpubPath;
+        
+        NSString *document = [AppDelegate documentsPath];
+        NSString *epubCache = [document stringByAppendingPathComponent:@"epubcache"];
         _temUnzipEpubPath   = [epubCache stringByAppendingString:@"/"];
         return _temUnzipEpubPath;
     }
@@ -44,7 +61,7 @@
     //--------------------------------------------------------------------------------------------//
     {
         /// opf file
-        NSData *manifestData = [NSData dataWithContentsOfFile:epub.manifestPath];
+        NSData *manifestData = [NSData dataWithContentsOfFile:[epub absolutePath:epub.manifestPath]];
         if (!manifestData)          return NO;
         
         NSError *error = nil;
@@ -56,10 +73,10 @@
         if (nodes.count <= 0)       return NO;
         
         GDataXMLElement *opfNode=nodes[0];
-        epub.opf_file =   [epub.unzipPath stringByAppendingString:[opfNode stringValue]];
+        epub.opf_file = [opfNode stringValue];
     }
     
-    NSData *opfData = [NSData dataWithContentsOfFile:epub.opf_file];
+    NSData *opfData = [NSData dataWithContentsOfFile:[epub absolutePath:epub.opf_file]];
     {
         /// opf data
         if (opfData) {
@@ -197,7 +214,7 @@
         
         
         
-        NSData *ncxData = [NSData dataWithContentsOfFile:epub.ncx_file];
+        NSData *ncxData = [NSData dataWithContentsOfFile:[epub absolutePath:epub.ncx_file]];
         {
             //目录章节
             NSError *error = nil;
@@ -264,10 +281,10 @@
     NSString *fileName = [[_epubModel.path lastPathComponent] stringByDeletingPathExtension];
     NSString *tempUnzipPath = [self.temUnzipEpubPath stringByAppendingString:fileName];
     tempUnzipPath = [tempUnzipPath stringByAppendingString:@"/"];
-    _epubModel.unzipPath = tempUnzipPath;
+    _epubModel.unzipPath =  [NSString stringWithFormat:@"%@/",fileName];//  tempUnzipPath;
     
-    NSString *manifestFile = [NSString stringWithFormat:@"%@/META-INF/container.xml", tempUnzipPath];
-    _epubModel.manifestPath = manifestFile;
+    //NSString *manifestFile = [NSString stringWithFormat:@"%@/META-INF/container.xml", tempUnzipPath];
+    _epubModel.manifestPath = @"/META-INF/container.xml";// manifestFile;
      
     ZipArchive *zip = [ZipArchive new];
     

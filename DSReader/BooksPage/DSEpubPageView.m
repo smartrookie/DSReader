@@ -141,7 +141,7 @@
     
     for (PageItem *item in _epub.pageItems) {
         if ([item.itemId isEqualToString:idRef]) {
-            return [[[_epub.opf_file stringByDeletingLastPathComponent] stringByAppendingString:@"/"] stringByAppendingString:item.href];
+            return [_epub absolutePath:[[[_epub.opf_file stringByDeletingLastPathComponent] stringByAppendingString:@"/"] stringByAppendingString:item.href]];
         }
     }
 

@@ -7,6 +7,7 @@
 //
 
 #import "EpubModel.h"
+#import "EpubParser.h"
 
 @implementation EpubModel
 
@@ -24,6 +25,11 @@
 - (NSString *)path
 {
     return [[NSBundle mainBundle] pathForResource:@"yiqiantulong" ofType:@"epub" inDirectory:nil];
+}
+
+- (NSString *)absolutePath:(NSString *)subPath
+{
+    return [[EpubParser temUnzipEpubPathAppentPath:self.unzipPath] stringByAppendingPathComponent:subPath];
 }
 
 @end

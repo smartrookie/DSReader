@@ -38,10 +38,9 @@
 - (void)setBookModel:(EpubModel *)bookModel
 {
     _bookModel = bookModel;
-    NSURL *url = [NSURL fileURLWithPath:bookModel.coverPath];
-    [_coverView loadHTMLString:[EpubParser htmlContentFromFile:bookModel.coverPath AddJsContent:[EpubParser jsContentWithViewRect:_coverView.bounds]] baseURL:url];
-    
-    
+    NSURL *url = [NSURL fileURLWithPath:[bookModel absolutePath:bookModel.coverPath]];
+    NSString *htmlString = [EpubParser htmlContentFromFile:[bookModel absolutePath:bookModel.coverPath] AddJsContent:[EpubParser jsContentWithViewRect:_coverView.bounds]] ;
+    [_coverView loadHTMLString:htmlString baseURL:url];
 }
 
 @end
