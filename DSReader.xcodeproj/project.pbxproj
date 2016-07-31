@@ -31,6 +31,7 @@
 		DEBAC4221D3FCF1000AE23F6 /* DSGridShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEBAC4211D3FCF1000AE23F6 /* DSGridShelfViewController.m */; };
 		DEFA1A7F1D43B22E00B2E8A6 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFA1A7E1D43B22E00B2E8A6 /* PersonalCenterViewController.m */; };
 		DEFA1A831D43BD9F00B2E8A6 /* DSGridBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFA1A821D43BD9F00B2E8A6 /* DSGridBookCell.m */; };
+		DEFD707D1D4E391B009EA9E9 /* 为人处世曾国藩.epub in Resources */ = {isa = PBXBuildFile; fileRef = DEFD707C1D4DE437009EA9E9 /* 为人处世曾国藩.epub */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		DEFA1A7E1D43B22E00B2E8A6 /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
 		DEFA1A811D43BD9F00B2E8A6 /* DSGridBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSGridBookCell.h; sourceTree = "<group>"; };
 		DEFA1A821D43BD9F00B2E8A6 /* DSGridBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSGridBookCell.m; sourceTree = "<group>"; };
+		DEFD707C1D4DE437009EA9E9 /* 为人处世曾国藩.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = "为人处世曾国藩.epub"; path = "../Model/为人处世曾国藩.epub"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 		655FA8881D2511ED005A5A52 /* BooksDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DEFD707C1D4DE437009EA9E9 /* 为人处世曾国藩.epub */,
 				655FA88B1D251363005A5A52 /* yiqiantulong.txt */,
 				655FA8891D2511ED005A5A52 /* yiqiantulong.epub */,
 			);
@@ -310,6 +313,7 @@
 				655FA8661D24F2F1005A5A52 /* Assets.xcassets in Resources */,
 				655FA88C1D251363005A5A52 /* yiqiantulong.txt in Resources */,
 				655FA88A1D2511ED005A5A52 /* yiqiantulong.epub in Resources */,
+				DEFD707D1D4E391B009EA9E9 /* 为人处世曾国藩.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,8 @@
     
     PersonalCenterViewController *person = [PersonalCenterViewController new];
     DSNavigationController *naviPerson = [[DSNavigationController alloc] initWithRootViewController:person];
+    person.tabBarItem.selectedImage = [UIImage imageNamed:@"TabIconContacts_Highlighted"];
+    person.tabBarItem.image = [UIImage imageNamed:@"TabIconContacts"];
     
     [self addChildViewController:naviPage];
     [self addChildViewController:naviPerson];

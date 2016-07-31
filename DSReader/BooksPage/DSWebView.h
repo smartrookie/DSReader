@@ -10,4 +10,8 @@
 
 @interface DSWebView : UIWebView
 
+@property (strong, nonatomic) NSString *lastTimeTextSelection; //just a flag
+
+- (NSString *)currentTextSelection;
+
 @end

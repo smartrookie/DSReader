@@ -8,6 +8,13 @@
 
 #import "DSWebView.h"
 
+@interface DSWebView()
+{
+    NSString *_currentTextSelection;
+}
+
+@end
+
 @implementation DSWebView
 
 /*
@@ -39,6 +46,11 @@
     } else {
         return NO;
     }
+}
+
+- (NSString *)currentTextSelection
+{
+    return [self stringByEvaluatingJavaScriptFromString:@"window.getSelection().toString()"];
 }
 
 

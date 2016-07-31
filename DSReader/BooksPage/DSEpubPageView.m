@@ -74,31 +74,41 @@
 //    longPress.numberOfTouchesRequired = 1;
 //    longPress.delegate = self;
 //    
-//    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapAction:)];
-//    singleTap.numberOfTapsRequired = 1;
-//    singleTap.numberOfTouchesRequired = 1;
-//    singleTap.delegate = self;
-//    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapAction:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    singleTap.delaysTouchesEnded = NO;
+    singleTap.delegate = self;
+    
 //    [singleTap requireGestureRecognizerToFail:longPress];
-//    
 //    [_webView addGestureRecognizer:longPress];
-//    [_webView addGestureRecognizer:singleTap];
+    [_webView addGestureRecognizer:singleTap];
 }
 
 
 #pragma mark - UIGestureRecognizerDelegate
 
-//- (void)longPressAction:(UILongPressGestureRecognizer *)sender
-//{
-//    NSLog(@"longPress");
-//}
-//
-//- (void)singleTapAction:(UITapGestureRecognizer *)sender
-//{
-//    
-//    NSLog(@"sender = %@",NSStringFromCGPoint([sender locationInView:sender.view]));
-//    [self.parentViewController performSelector:@selector(singleTapAction:) withObject:sender afterDelay:0.1];
-//}
+- (void)singleTapAction:(UITapGestureRecognizer *)sender
+{
+    NSLog(@"sender = %@",NSStringFromCGPoint([sender locationInView:sender.view]));
+    NSString *selection = [_webView currentTextSelection];
+    
+    if (![selection  isEqualToString:@""]) {
+        NSLog(@"selection = %@",selection);
+        _webView.lastTimeTextSelection = selection;
+    } else {
+        
+        if (_webView.lastTimeTextSelection != nil) {
+            NSLog(@"~~~~");
+        } else {
+            NSLog(@"!!!!");
+            
+            
+            NSLog(@"可以进行翻页判断");
+        }
+        _webView.lastTimeTextSelection = nil;
+    }
+}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {

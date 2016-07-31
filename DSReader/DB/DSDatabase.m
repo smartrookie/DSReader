@@ -250,8 +250,13 @@ DSDatabase *TGDatabaseInstance()
     
     [_database executeUpdate:pageRef_modelSql];
     
-    EpubModel *book= [EpubModel new];
+    EpubModel *book= [[EpubModel alloc] initWithEpubName:@"为人处世曾国藩"];
     EpubParser *parser = [EpubParser new];
+    [parser unzipEpub:book];
+    [[DSDatabase instance] storeEpubModel:book];
+    
+    
+    book = [[EpubModel alloc] initWithEpubName:@"yiqiantulong"];
     [parser unzipEpub:book];
     [[DSDatabase instance] storeEpubModel:book];
 }
