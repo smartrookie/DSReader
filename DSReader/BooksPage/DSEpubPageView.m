@@ -101,9 +101,19 @@
         if (_webView.lastTimeTextSelection != nil) {
             NSLog(@"~~~~");
         } else {
-            NSLog(@"!!!!");
-            
-            
+            CGPoint tapPoint = [sender locationInView:sender.view];
+            if (tapPoint.x <= sender.view.width / 3)
+            {
+                [self.tapDelegate pageView:self tapPosition:Tap_Left];
+            }
+            else if (tapPoint.x > sender.view.width / 3 && tapPoint.x < sender.view.width / 3.0 * 2 )
+            {
+                [self.tapDelegate pageView:self tapPosition:Tap_Center];
+            }
+            else
+            {
+                [self.tapDelegate pageView:self tapPosition:Tap_Right];
+            }
             NSLog(@"可以进行翻页判断");
         }
         _webView.lastTimeTextSelection = nil;

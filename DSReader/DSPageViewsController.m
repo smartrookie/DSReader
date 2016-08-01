@@ -12,11 +12,12 @@
 #import "DSEpubPageView.h"
 #import "DSEpubConfig.h"
 
-@interface DSPageViewsController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
+@interface DSPageViewsController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,DSEpubPageViewTapDelegate>
 {
 }
 
 @property (nonatomic) EpubModel *epuModel;
+@property (nonatomic, getter=isTopBarHidden, assign) BOOL topBarHidden;
 
 @end
 
@@ -35,7 +36,8 @@
     NSDictionary *options =[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin]
                                                        forKey: UIPageViewControllerOptionSpineLocationKey];
     self = [self initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:options];
-    if (self) {
+    if (self)
+    {
         
     }
     return self;
@@ -44,11 +46,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    [self setTopBarHidden:YES];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.delegate = self;
@@ -58,13 +60,23 @@
     DSEpubPageView *pageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
     pageView.pageNum = 0;
     pageView.chapterIndex = 0;
+    pageView.tapDelegate = self;
     [self setViewControllers:@[pageView] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+//    [self.view setTintAdjustmentMode:UIViewTintAdjustmentModeDimmed];
 }
 
 - (void)middleZoneTapAction:(id)sender
 {
     Boolean isHidden = self.navigationController.navigationBar.isHidden;
     [self.navigationController setNavigationBarHidden:!isHidden animated:YES];
+}
+
+- (void)setTopBarHidden:(BOOL)hidden
+{
+    [self.navigationController setNavigationBarHidden:hidden];
+    self.navigationController.navigationBar.translucent = YES;
+//    [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationFade];
+    _topBarHidden = hidden;
 }
 
 - (void)singleTapAction:(UITapGestureRecognizer *)sender
@@ -83,20 +95,41 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - DSEpubPageViewTapDelegate
 
+- (void)pageView:(__unused DSEpubPageView *)epubPageView tapPosition:(Tap_Position)position
+{
+    switch (position) {
+        case Tap_Left:
+            NSLog(@"Left");
+            [self pageUpAction];
+            break;
+        case Tap_Center:
+            NSLog(@"Center");
+            
+            [self setTopBarHidden:!self.isTopBarHidden];
+
+            break;
+        case Tap_Right:
+            NSLog(@"Right");
+            [self pageDownAction];
+            break;
+    }
+}
+// 上一页
 - (void)pageUpAction
 {
     DSEpubPageView *newPageView = [self pagePreController];
     if (newPageView) {
-        [self setViewControllers:@[newPageView] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [self setViewControllers:@[newPageView] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
     }
 }
-
+// 下一页
 - (void)pageDownAction
 {
-    DSEpubPageView *newPageView = [self pagePreController];
+    DSEpubPageView *newPageView = [self pageNextController];
     if (newPageView) {
-        [self setViewControllers:@[newPageView] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+        [self setViewControllers:@[newPageView] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
 }
 
@@ -116,6 +149,7 @@
         newPageView.chapterIndex = oldChapterIndex;
         newPageView.pageNum      = oldPageNum + 1;
         _newPageView = newPageView;
+        newPageView.tapDelegate = self;
     }
     //换章
     else if (oldChapterIndex < _epuModel.pageRefs.count - 1) {
@@ -123,6 +157,7 @@
         newPageView.chapterIndex = oldChapterIndex + 1;
         newPageView.pageNum      = 0;
         _newPageView = newPageView;
+        newPageView.tapDelegate = self;
     }
     return _newPageView;
 }
@@ -144,6 +179,7 @@
         newPageView.chapterIndex = oldChapterIndex;
         newPageView.pageNum      = oldPageNum - 1;
         _newPageView = newPageView;
+        newPageView.tapDelegate = self;
     }
     //换章
     else {
@@ -151,6 +187,7 @@
         newPageView.chapterIndex = oldChapterIndex - 1;
         newPageView.pageNum      = -1;
         _newPageView = newPageView;
+        newPageView.tapDelegate = self;
     }
     
     return _newPageView;
