@@ -39,6 +39,8 @@
     [self.view addSubview:_webView];
     _webView.scrollView.scrollEnabled = NO;
     _webView.scrollView.bounces = NO;
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    [_webView setAutoresizingMask:UIViewAutoresizingNone];
     
     NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
     
