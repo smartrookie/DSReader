@@ -46,9 +46,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-//    [self setTopBarHidden:YES];
 }
 
 - (void)viewDidLoad
@@ -65,7 +62,24 @@
     pageView.tapDelegate = self;
     [self setViewControllers:@[pageView] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
+    
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavigationBackArrowNormal"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(backAction:)];
+    
+    UIBarButtonItem *cateItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(backAction:)];
+    
+    self.navigationItem.leftBarButtonItems = @[backItem,cateItem];
 
+}
+
+- (void)backAction:(id)sender
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)middleZoneTapAction:(id)sender
