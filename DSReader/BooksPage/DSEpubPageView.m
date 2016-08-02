@@ -33,32 +33,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor ds_whiteColor];
+    
+    _headerLabel = [UILabel new];
+    _headerLabel.left = 20;
+    _headerLabel.width = SCREEN_WIDTH;
+    _headerLabel.height = 10;
+    _headerLabel.bottom = 30;
+    //_headerLabel.text = @"第一章";
+    _headerLabel.textColor = [UIColor ds_lightGrayColor];
+    _headerLabel.font = [UIFont systemFontOfSize:13];
+    [self.view addSubview:_headerLabel];
+    _headerLabel.text = _epub.navPoints[_chapterIndex].text;
+    
+    
     _webView = [DSWebView new];
     _webView.frame =  CGRectInset(self.view.bounds,20,40);
     _webView.delegate = self;
     [self.view addSubview:_webView];
     _webView.scrollView.scrollEnabled = NO;
     _webView.scrollView.bounces = NO;
-    [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    [_webView setAutoresizingMask:UIViewAutoresizingNone];
     
     NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
-    
     NSURL* baseURL = [NSURL fileURLWithPath:href];
     [_webView loadHTMLString:[EpubParser htmlContentFromFile:href AddJsContent:[EpubParser jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
-    _webView.backgroundColor = self.view.backgroundColor;
     
-    
-    _headerLabel = [UILabel new];
-    _headerLabel.left = 20;
-    _headerLabel.width = _webView.width;
-    _headerLabel.height = 10;
-    _headerLabel.bottom = _webView.top - 10;
-    //_headerLabel.text = @"第一章";
-    _headerLabel.textColor = [UIColor ds_lightGrayColor];
-    _headerLabel.font = [UIFont systemFontOfSize:13];
-    [self.view addSubview:_headerLabel];
-    _headerLabel.text = _epub.navPoints[_chapterIndex].text;
     
     _footerLabel = [UILabel new];
     _footerLabel.left = 20;
