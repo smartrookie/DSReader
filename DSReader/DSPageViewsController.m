@@ -46,6 +46,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    [self.navigationController setNavigationBarHidden:YES];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self setTopBarHidden:YES];
 }
 
@@ -62,7 +65,6 @@
     pageView.chapterIndex = 0;
     pageView.tapDelegate = self;
     [self setViewControllers:@[pageView] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-//    [self.view setTintAdjustmentMode:UIViewTintAdjustmentModeDimmed];
 }
 
 - (void)middleZoneTapAction:(id)sender
@@ -73,9 +75,9 @@
 
 - (void)setTopBarHidden:(BOOL)hidden
 {
-    [self.navigationController setNavigationBarHidden:hidden];
-    self.navigationController.navigationBar.translucent = YES;
-//    [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationFade];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController setNavigationBarHidden:hidden animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationFade];
     _topBarHidden = hidden;
 }
 
