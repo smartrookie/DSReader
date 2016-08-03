@@ -74,7 +74,35 @@
                                                                 action:@selector(backAction:)];
     
     self.navigationItem.leftBarButtonItems = @[backItem,cateItem];
-
+    
+    
+    
+    
+    
+    
+    UIBarButtonItem *cateItem_0 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
+                                                                                target:nil
+                                                                                action:nil];
+    UIBarButtonItem *cateItem_1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                                target:nil
+                                                                                action:nil];
+    UIBarButtonItem *cateItem_2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
+                                                                                target:nil
+                                                                                action:nil];
+    UIBarButtonItem *cateItem_3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                target:nil
+                                                                                action:nil];
+    UIBarButtonItem *cateItem_4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
+                                                                                target:nil
+                                                                                action:nil];
+    
+    UIBarButtonItem *blankItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                               target:nil
+                                                                               action:nil];
+    
+    
+    [self setToolbarItems:@[cateItem_0,blankItem,cateItem_1,blankItem,cateItem_2,blankItem,cateItem_3,blankItem,cateItem_4]];
+    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)backAction:(id)sender
@@ -90,12 +118,11 @@
 
 - (void)setTopBarHidden:(BOOL)hidden
 {
-    //self.edgesForExtendedLayout = UIRectEdgeNone;
+    if (_topBarHidden == hidden) return;
+    _topBarHidden = hidden;
     [self.navigationController setNavigationBarHidden:hidden animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationSlide];
-    _topBarHidden = hidden;
-    
-    
+    [self.navigationController setToolbarHidden:hidden animated:YES];
 }
 
 - (void)singleTapAction:(UITapGestureRecognizer *)sender
@@ -118,6 +145,11 @@
 
 - (void)pageView:(__unused DSEpubPageView *)epubPageView tapPosition:(Tap_Position)position
 {
+    if (!_topBarHidden) {
+        [self setTopBarHidden:YES];
+        return;
+    }
+    
     switch (position) {
         case Tap_Left:
             NSLog(@"Left");
@@ -216,10 +248,10 @@
 
 #pragma mark - UIPageViewControllerDelegate
 
-//- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers
-//{
-//    
-//}
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers
+{
+    [self setTopBarHidden:YES];
+}
 //
 //- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed
 //{
