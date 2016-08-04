@@ -8,7 +8,7 @@
 #import "DSPopoverSettingsViewController.h"
 
 
-
+// UIScreen Brightness
 @interface __LightControlCell : UITableViewCell
 {
     UIImageView *_leftIcon;
@@ -61,7 +61,23 @@
 @end
 
 
+// Font Size
 
+@interface __FontAjustSizeCell : UITableViewCell
+
+@end
+
+@implementation __FontAjustSizeCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    return self;
+}
+
+@end
 
 
 
@@ -102,7 +118,8 @@
 
 @interface DSPopoverSettingsViewController ()<UIPopoverPresentationControllerDelegate>
 
-@property (strong, nonatomic) __LightControlCell *lightControlCell;
+@property (strong, nonatomic) __LightControlCell  *lightControlCell;
+@property (strong, nonatomic) __FontAjustSizeCell *fontAjustSizeCell;
 
 @end
 
@@ -134,6 +151,7 @@
     
     
     _lightControlCell = [__LightControlCell new];
+    _fontAjustSizeCell = [__FontAjustSizeCell new];
     
 }
 
@@ -176,14 +194,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
-    switch (indexPath.section) {
-        case 0:
-            return _lightControlCell;
-            break;
-            
-        default:
-            break;
+    if (section == 0)
+    {
+        return _lightControlCell;
+    }
+    else if (section == 1 && row == 0)
+    {
+        return _fontAjustSizeCell;
     }
     
     
