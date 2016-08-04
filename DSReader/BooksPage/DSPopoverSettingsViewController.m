@@ -64,6 +64,12 @@
 // Font Size
 
 @interface __FontAjustSizeCell : UITableViewCell
+{
+    CALayer *_middleLine;
+}
+@property (strong, nonatomic) UIButton *minuButton;
+@property (strong, nonatomic) UIButton *plusButton;
+
 
 @end
 
@@ -73,6 +79,26 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    _minuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_minuButton setFrame:CGRectMake(0, 0, 300/2 -0.5, 44)];
+    [_minuButton setTitle:@"小A" forState:UIControlStateNormal];
+    [self.contentView addSubview:_minuButton];
+    [_minuButton setTitleColor:[UIColor ds_blueColor] forState:UIControlStateNormal];
+
+    _plusButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_plusButton setFrame:CGRectMake(0, 0, 300/2 -0.5, 44)];
+    [_plusButton setTitle:@"大A" forState:UIControlStateNormal];
+    _plusButton.left = _minuButton.width + 1;
+    [self.contentView addSubview:_plusButton];
+    [_plusButton setTitleColor:[UIColor ds_blueColor] forState:UIControlStateNormal];
+    
+    _middleLine = [CALayer new];
+    _middleLine.width = CGFloatFromPixel(1);
+    _middleLine.height = 44;
+    _middleLine.backgroundColor = [UIColor ds_micrGrayoolor].CGColor;
+    _middleLine.left = _minuButton.width;
+    [self.contentView.layer addSublayer:_middleLine];
     
     return self;
 }
@@ -149,9 +175,27 @@
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.tableView setScrollEnabled:NO];
     
-    
     _lightControlCell = [__LightControlCell new];
     _fontAjustSizeCell = [__FontAjustSizeCell new];
+    [_fontAjustSizeCell.minuButton addTarget:self
+                                      action:@selector(adjustFontAction:)
+                            forControlEvents:UIControlEventTouchUpInside];
+    [_fontAjustSizeCell.plusButton addTarget:self
+                                      action:@selector(adjustFontAction:)
+                            forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)adjustFontAction:(UIButton *)sender
+{
+    if (sender == _fontAjustSizeCell.minuButton)
+    {
+        NSLog(@"变小");
+    }
+    else if (sender == _fontAjustSizeCell.plusButton)
+    {
+        NSLog(@"变大");
+    }
+    
     
 }
 
