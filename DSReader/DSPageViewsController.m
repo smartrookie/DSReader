@@ -11,8 +11,9 @@
 #import "DSTextPageView.h"
 #import "DSEpubPageView.h"
 #import "DSEpubConfig.h"
+#import "DSPopoverSettingsViewController.h"
 
-@interface DSPageViewsController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,DSEpubPageViewTapDelegate>
+@interface DSPageViewsController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,DSEpubPageViewTapDelegate,UIPopoverPresentationControllerDelegate>
 {
 }
 
@@ -83,27 +84,39 @@
     UIBarButtonItem *cateItem_0 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
                                                                                 target:nil
                                                                                 action:nil];
-    UIBarButtonItem *cateItem_1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-                                                                                target:nil
-                                                                                action:nil];
-    UIBarButtonItem *cateItem_2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
-                                                                                target:nil
-                                                                                action:nil];
-    UIBarButtonItem *cateItem_3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                                                target:nil
-                                                                                action:nil];
-    UIBarButtonItem *cateItem_4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
-                                                                                target:nil
-                                                                                action:nil];
-    
+    UIBarButtonItem *cateItem_1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                target:self
+                                                                                action:@selector(toolBarSettingsAction:)];
+    UIBarButtonItem *cateItem_2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"TabIconSettings"]
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(toolBarSettingsAction:)];
     UIBarButtonItem *blankItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                target:nil
                                                                                action:nil];
     
     
-    [self setToolbarItems:@[cateItem_0,blankItem,cateItem_1,blankItem,cateItem_2,blankItem,cateItem_3,blankItem,cateItem_4]];
+    [self setToolbarItems:@[cateItem_0,blankItem,cateItem_1,blankItem,cateItem_2]];
     [self.navigationController setToolbarHidden:NO];
 }
+
+
+- (void)toolBarSettingsAction:(UIBarButtonItem *)sender
+{
+    DSPopoverSettingsViewController *pop = [[DSPopoverSettingsViewController alloc] initWithBarButtonItem:sender];
+    [self presentViewController:pop animated:YES completion:nil];
+}
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller traitCollection:(UITraitCollection *)traitCollection {
+    return UIModalPresentationPopover; // 20
+}
+
+- (UIViewController *)presentationController:(UIPresentationController *)controller viewControllerForAdaptivePresentationStyle:(UIModalPresentationStyle)style {
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller.presentedViewController];
+    return navController; // 21
+}
+
+
 
 - (void)backAction:(id)sender
 {
