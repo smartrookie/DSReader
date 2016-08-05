@@ -93,23 +93,7 @@
     [self setToolbarItems:@[blankItem,cateItem_0]];
     [self.navigationController setToolbarHidden:NO];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_BROWSE_MODE_CHANGE object:nil];
 }
-
-- (void)notificationHandleAction:(NSNotification *)sender
-{
-    if (sender.name == DSNOTIFICATION_BROWSE_MODE_CHANGE)
-    {
-        //DSPageBrowseModel model = [(NSNumber *)sender.object integerValue];
-        NSLog(@"Brose Model Changed");
-    }
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 
 - (void)toolBarSettingsAction:(UIBarButtonItem *)sender
 {

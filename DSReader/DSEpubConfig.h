@@ -10,6 +10,7 @@
 
 extern NSString * const DSNOTIFICATION_CHANGE_FONT_SIZE;
 extern NSString * const DSNOTIFICATION_BROWSE_MODE_CHANGE;
+extern NSString * const DSNOTIFICATION_PAGE_STYLE_CHANGE;
 
 typedef enum : NSUInteger {
     DSPageStyle_Normal,
@@ -36,6 +37,8 @@ typedef enum : NSUInteger {
 @property (assign, nonatomic) DSPageBrowseModel browseModel;
 
 - (NSString *)fontName;
+
+- (UIColor *)paperColorForPageStyle:(DSPageStyle)style;
 
 
 @end

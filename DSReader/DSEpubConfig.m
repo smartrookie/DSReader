@@ -10,6 +10,7 @@
 
 NSString * const DSNOTIFICATION_CHANGE_FONT_SIZE = @"DSNOTIFICATION_CHANGE_FONT_SIZE";
 NSString * const DSNOTIFICATION_BROWSE_MODE_CHANGE = @"DSNOTIFICATION_BROWSE_MODE_CHANGE";
+NSString * const DSNOTIFICATION_PAGE_STYLE_CHANGE = @"DSNOTIFICATION_PAGE_STYLE_CHANGE";
 
 @implementation DSEpubConfig
 
@@ -49,9 +50,48 @@ NSString * const DSNOTIFICATION_BROWSE_MODE_CHANGE = @"DSNOTIFICATION_BROWSE_MOD
     [[NSNotificationCenter defaultCenter] postNotificationName:DSNOTIFICATION_BROWSE_MODE_CHANGE object:@(browseModel)];
 }
 
+- (void)setPageStyle:(DSPageStyle)pageStyle
+{
+    _pageStyle = pageStyle;
+    [[NSNotificationCenter defaultCenter] postNotificationName:DSNOTIFICATION_PAGE_STYLE_CHANGE object:@(pageStyle)];
+}
+
 - (NSString *)fontName
 {
     return @"Helvetica";
+}
+
+- (UIColor *)paperColorForPageStyle:(DSPageStyle)style
+{
+    UIColor *color;
+    switch (style) {
+        case DSPageStyle_Normal:
+        {
+            color = [UIColor ds_whiteColor];
+        }
+            break;
+        case DSPageStyle_One:
+        {
+            color = [UIColor ds_greenColor];
+        }
+            break;
+        case DSPageStyle_Two:
+        {
+            color = [UIColor ds_yellowColor];
+        }
+            break;
+        case DSPageStyle_Thr:
+        {
+            color = [UIColor ds_darkGrayColor];
+        }
+            break;
+        default:
+        {
+            color = [UIColor ds_whiteColor];
+        }
+            break;
+    }
+    return color;
 }
 
 

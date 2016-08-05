@@ -37,7 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor ds_whiteColor];
+    self.view.backgroundColor = [[DSEpubConfig shareInstance] paperColorForPageStyle:[[DSEpubConfig shareInstance] pageStyle]];
     
     _headerLabel = [UILabel new];
     _headerLabel.left = 20;
@@ -61,6 +61,7 @@
     NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
     NSURL* baseURL = [NSURL fileURLWithPath:href];
     [_webView loadHTMLString:[EpubParser htmlContentFromFile:href AddJsContent:[EpubParser jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
+    _webView.backgroundColor = [UIColor clearColor];
     
     
     _footerLabel = [UILabel new];
@@ -91,8 +92,9 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_CHANGE_FONT_SIZE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_BROWSE_MODE_CHANGE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_PAGE_STYLE_CHANGE object:nil];
 }
-
 - (void)notificationHandleAction:(NSNotification *)sender
 {
     if (sender.name == DSNOTIFICATION_CHANGE_FONT_SIZE)
@@ -114,6 +116,17 @@
                [_webView loadHTMLString:[EpubParser htmlContentFromFile:href AddJsContent:[EpubParser jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
             });
         }
+    }
+    else if (sender.name == DSNOTIFICATION_BROWSE_MODE_CHANGE)
+    {
+        //DSPageBrowseModel model = [(NSNumber *)sender.object integerValue];
+        NSLog(@"Brose Model Changed");
+    }
+    else if (sender.name == DSNOTIFICATION_PAGE_STYLE_CHANGE)
+    {
+        DSPageStyle style = [(NSNumber *)sender.object integerValue];
+        UIColor *color = [[DSEpubConfig shareInstance] paperColorForPageStyle:style];
+        self.view.backgroundColor = color;
     }
 }
 
