@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		46B02236CE63B52CFFA1F8BD /* libPods-DSReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2009CF071B75BF403DA50DBA /* libPods-DSReader.a */; };
+		6551FBDE1D54826800102091 /* DSPageBgStyleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551FBDD1D54826800102091 /* DSPageBgStyleButton.m */; };
 		655FA85B1D24F2F1005A5A52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA85A1D24F2F1005A5A52 /* main.m */; };
 		655FA85E1D24F2F1005A5A52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA85D1D24F2F1005A5A52 /* AppDelegate.m */; };
 		655FA8661D24F2F1005A5A52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 655FA8651D24F2F1005A5A52 /* Assets.xcassets */; };
@@ -37,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		2009CF071B75BF403DA50DBA /* libPods-DSReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DSReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6551FBDC1D54826800102091 /* DSPageBgStyleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPageBgStyleButton.h; sourceTree = "<group>"; };
+		6551FBDD1D54826800102091 /* DSPageBgStyleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPageBgStyleButton.m; sourceTree = "<group>"; };
 		655FA8561D24F2F1005A5A52 /* DSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		655FA85A1D24F2F1005A5A52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		655FA85C1D24F2F1005A5A52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				65610A9F1D2CB45200227711 /* DSEpubPageView.m */,
 				65610A9B1D2CB3AB00227711 /* DSWebView.h */,
 				65610A9C1D2CB3AB00227711 /* DSWebView.m */,
+				6551FBDC1D54826800102091 /* DSPageBgStyleButton.h */,
+				6551FBDD1D54826800102091 /* DSPageBgStyleButton.m */,
 			);
 			path = BooksPage;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 				655FA85B1D24F2F1005A5A52 /* main.m in Sources */,
 				65610AA01D2CB45200227711 /* DSEpubPageView.m in Sources */,
 				DEFA1A7F1D43B22E00B2E8A6 /* PersonalCenterViewController.m in Sources */,
+				6551FBDE1D54826800102091 /* DSPageBgStyleButton.m in Sources */,
 				65D814A11D26862400832AC2 /* DSTextPageView.m in Sources */,
 				DEA266F21D46548000BD15D3 /* DSCommon.m in Sources */,
 				657579DE1D2A470400CAEADB /* EpubModel.m in Sources */,

@@ -313,7 +313,8 @@
     //如果pageNum 值为 -1 ，则为最后一页
     //NSInteger pageNum = _pageNum != -1 ? _pageNum : offCountInPage;
     
-    if (_pageNum == -1) {
+    if (_pageNum == -1)
+    {
         _pageNum = offCountInPage - 1;
     }
     else if (_progress != 0)

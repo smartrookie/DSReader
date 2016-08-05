@@ -107,7 +107,21 @@
 @end
 
 
+@interface __BackgroundStyleCell : UITableViewCell
 
+@end
+
+@implementation __BackgroundStyleCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    return self;
+}
+
+@end
 
 
 
@@ -147,6 +161,7 @@
 
 @property (strong, nonatomic) __LightControlCell  *lightControlCell;
 @property (strong, nonatomic) __FontAjustSizeCell *fontAjustSizeCell;
+@property (strong, nonatomic) __BackgroundStyleCell *backgroundStyleCell;
 
 @end
 
@@ -184,6 +199,8 @@
     [_fontAjustSizeCell.plusButton addTarget:self
                                       action:@selector(adjustFontAction:)
                             forControlEvents:UIControlEventTouchUpInside];
+    
+    _backgroundStyleCell = [__BackgroundStyleCell new];
 }
 
 - (void)adjustFontAction:(UIButton *)sender
@@ -202,22 +219,26 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     
     NSInteger number = 0;
     
-    switch (section) {
+    switch (section)
+    {
         case 0:
             number = 1;
             break;
@@ -234,12 +255,24 @@
     return number;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger section = indexPath.section;
+    NSInteger row     = indexPath.row;
+    if (section == 1 && row == 1)
+    {
+        return 60;
+    }
+    return 44;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 4;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
@@ -252,7 +285,10 @@
     {
         return _fontAjustSizeCell;
     }
-    
+    else if (section == 1 && row == 1)
+    {
+        return _backgroundStyleCell;
+    }
     
     
     
