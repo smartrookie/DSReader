@@ -9,6 +9,7 @@
 #import "DSEpubConfig.h"
 
 NSString * const DSNOTIFICATION_CHANGE_FONT_SIZE = @"DSNOTIFICATION_CHANGE_FONT_SIZE";
+NSString * const DSNOTIFICATION_BROWSE_MODE_CHANGE = @"DSNOTIFICATION_BROWSE_MODE_CHANGE";
 
 @implementation DSEpubConfig
 
@@ -17,6 +18,8 @@ NSString * const DSNOTIFICATION_CHANGE_FONT_SIZE = @"DSNOTIFICATION_CHANGE_FONT_
     self = [super init];
     if (self) {
         _fontSize = 16;
+        _pageStyle = DSPageStyle_Normal;
+        _browseModel = DSPageBrowseModel_Page;
     }
     return self;
 }
@@ -38,6 +41,12 @@ NSString * const DSNOTIFICATION_CHANGE_FONT_SIZE = @"DSNOTIFICATION_CHANGE_FONT_
         _fontSize = fontSize;
         [[NSNotificationCenter defaultCenter] postNotificationName:DSNOTIFICATION_CHANGE_FONT_SIZE object:@(fontSize)];
     }
+}
+
+- (void)setBrowseModel:(DSPageBrowseModel)browseModel
+{
+    _browseModel = browseModel;
+    [[NSNotificationCenter defaultCenter] postNotificationName:DSNOTIFICATION_BROWSE_MODE_CHANGE object:@(browseModel)];
 }
 
 - (NSString *)fontName

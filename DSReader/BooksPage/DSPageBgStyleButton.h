@@ -7,13 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef enum : NSUInteger {
-    DSPageStyle_Normal,
-    DSPageStyle_One,
-    DSPageStyle_Two,
-    DSPageStyle_Thr,
-} DSPageStyle;
+#import "DSEpubConfig.h"
 
 @interface DSPageBgStyleButton : UIControl
 

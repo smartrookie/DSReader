@@ -7,6 +7,7 @@
 //
 #import "DSPopoverSettingsViewController.h"
 #import "DSEpubConfig.h"
+#import "DSPageBgStyleButton.h"
 
 
 // UIScreen Brightness
@@ -109,6 +110,8 @@
 
 @interface __BackgroundStyleCell : UITableViewCell
 
+@property (strong, nonatomic) NSMutableArray *buttons;
+
 @end
 
 @implementation __BackgroundStyleCell
@@ -118,14 +121,92 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
+    
+    _buttons = @[].mutableCopy;
+    int styles[] = {DSPageStyle_Normal,DSPageStyle_One,DSPageStyle_Two,DSPageStyle_Thr};
+    for (int i = 0; i < 4; i++) {
+        DSPageBgStyleButton *btn = [DSPageBgStyleButton new];
+        btn.style = styles[i];
+        btn.frame = CGRectMake(30 + (i*62.5), 5, 50, 50);
+        [self.contentView addSubview:btn];
+        [btn addTarget:self action:@selector(pageStyleButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_buttons addObject:btn];
+    }
+    
+    [self pageStyleButtonAction:nil];
+    
     return self;
 }
+
+- (void)pageStyleButtonAction:(DSPageBgStyleButton *)sender
+{
+    DSPageStyle style;
+    
+    if (sender)
+    {
+        style = sender.style;
+        [[DSEpubConfig shareInstance] setPageStyle:style];
+    }
+    else
+    {
+        style = [[DSEpubConfig shareInstance] pageStyle];
+    }
+    
+    for (DSPageBgStyleButton *btn in _buttons)
+    {
+        if (btn.style == style)
+        {
+            btn.selected = YES;
+        }
+        else
+        {
+            btn.selected = NO;
+        }
+    }
+}
+
 
 @end
 
 
 
+@interface __BrowseModelCell : UITableViewCell
 
+@property (strong, nonatomic) UISwitch *choiceModelSwitch;
+
+@end
+
+@implementation __BrowseModelCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    self.textLabel.text = @"翻页浏览";
+    
+    _choiceModelSwitch = [UISwitch new];
+    _choiceModelSwitch.on = [[DSEpubConfig shareInstance] browseModel] == DSPageBrowseModel_Page;
+    self.accessoryView = _choiceModelSwitch;
+    [_choiceModelSwitch addTarget:self action:@selector(browseModelChange:) forControlEvents:UIControlEventValueChanged];
+    
+    return self;
+}
+
+- (void)browseModelChange:(UISwitch *)sender
+{
+    if (sender.isOn)
+    {
+        [[DSEpubConfig shareInstance] setBrowseModel:DSPageBrowseModel_Page];
+    }
+    else
+    {
+        [[DSEpubConfig shareInstance] setBrowseModel:DSPageBrowseModel_Scroll];
+    }
+}
+
+
+@end
 
 
 
@@ -162,6 +243,7 @@
 @property (strong, nonatomic) __LightControlCell  *lightControlCell;
 @property (strong, nonatomic) __FontAjustSizeCell *fontAjustSizeCell;
 @property (strong, nonatomic) __BackgroundStyleCell *backgroundStyleCell;
+@property (strong, nonatomic) __BrowseModelCell   *browseModelCell;
 
 @end
 
@@ -201,6 +283,7 @@
                             forControlEvents:UIControlEventTouchUpInside];
     
     _backgroundStyleCell = [__BackgroundStyleCell new];
+    _browseModelCell = [__BrowseModelCell new];
 }
 
 - (void)adjustFontAction:(UIButton *)sender
@@ -215,8 +298,6 @@
         NSLog(@"变大");
         [DSEpubConfig shareInstance].fontSize++;
     }
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -289,14 +370,10 @@
     {
         return _backgroundStyleCell;
     }
-    
-    
-    
-    
-    
-    
-    
-    
+    else if (section == 2 && row == 0)
+    {
+        return _browseModelCell;
+    }
     
     
     
@@ -306,51 +383,6 @@
     
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 #pragma mark - UIPopoverPresentationControllerDelegate

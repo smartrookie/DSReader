@@ -81,14 +81,7 @@
     
     
     
-    
-    UIBarButtonItem *cateItem_0 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
-                                                                                target:nil
-                                                                                action:nil];
-    UIBarButtonItem *cateItem_1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                                                target:self
-                                                                                action:@selector(toolBarSettingsAction:)];
-    UIBarButtonItem *cateItem_2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"TabIconSettings"]
+    UIBarButtonItem *cateItem_0 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"TabIconSettings"]
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
                                                                   action:@selector(toolBarSettingsAction:)];
@@ -97,8 +90,24 @@
                                                                                action:nil];
     
     
-    [self setToolbarItems:@[cateItem_0,blankItem,cateItem_1,blankItem,cateItem_2]];
+    [self setToolbarItems:@[blankItem,cateItem_0]];
     [self.navigationController setToolbarHidden:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_BROWSE_MODE_CHANGE object:nil];
+}
+
+- (void)notificationHandleAction:(NSNotification *)sender
+{
+    if (sender.name == DSNOTIFICATION_BROWSE_MODE_CHANGE)
+    {
+        //DSPageBrowseModel model = [(NSNumber *)sender.object integerValue];
+        NSLog(@"Brose Model Changed");
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
