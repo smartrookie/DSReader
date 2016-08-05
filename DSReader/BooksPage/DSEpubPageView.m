@@ -19,6 +19,11 @@
 @property (strong, nonatomic) UILabel *headerLabel;
 @property (strong, nonatomic) UILabel *footerLabel;
 
+/**
+ * 仅在切换字体大小时需要根据进度刷新页面
+ *****/
+@property (assign, nonatomic) float progress;
+
 @end
 
 @implementation DSEpubPageView
@@ -83,6 +88,38 @@
 //    [singleTap requireGestureRecognizerToFail:longPress];
 //    [_webView addGestureRecognizer:longPress];
     [_webView addGestureRecognizer:singleTap];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_CHANGE_FONT_SIZE object:nil];
+}
+
+- (void)notificationHandleAction:(NSNotification *)sender
+{
+    if (sender.name == DSNOTIFICATION_CHANGE_FONT_SIZE)
+    {
+        NSNumber *fontSize = sender.object;
+        NSLog(@"new fontSize = %@",fontSize.stringValue);
+        if ([NSThread isMainThread])
+        {
+            NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
+            NSURL* baseURL = [NSURL fileURLWithPath:href];
+            [_webView loadHTMLString:[EpubParser htmlContentFromFile:href AddJsContent:[EpubParser jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(), ^
+            {
+               NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
+               NSURL* baseURL = [NSURL fileURLWithPath:href];
+               [_webView loadHTMLString:[EpubParser htmlContentFromFile:href AddJsContent:[EpubParser jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
+            });
+        }
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -93,14 +130,19 @@
     NSLog(@"sender = %@",NSStringFromCGPoint([sender locationInView:sender.view]));
     NSString *selection = [_webView currentTextSelection];
     
-    if (![selection  isEqualToString:@""]) {
+    if (![selection  isEqualToString:@""])
+    {
         NSLog(@"selection = %@",selection);
         _webView.lastTimeTextSelection = selection;
-    } else {
-        
-        if (_webView.lastTimeTextSelection != nil) {
+    }
+    else
+    {
+        if (_webView.lastTimeTextSelection != nil)
+        {
             NSLog(@"~~~~");
-        } else {
+        }
+        else
+        {
             CGPoint tapPoint = [sender locationInView:sender.view];
             if (tapPoint.x <= sender.view.width / 3)
             {
@@ -168,26 +210,10 @@
     return nil;
 }
 
-
-
-
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 -(NSString*)jsFontStyle:(NSString*)fontFilePath
@@ -290,7 +316,14 @@
     if (_pageNum == -1) {
         _pageNum = offCountInPage - 1;
     }
-    
+    else if (_progress != 0)
+    {
+        _pageNum = MAX( (_pageCount * _progress) - 1 , 0 );
+    }
+    else
+    {
+        _progress = ((float)_pageNum + 1) / (float)_pageCount;
+    }
     [self gotoOffYInPageWithOffYIndex:_pageNum WithOffCountInPage:offCountInPage];
     [self refreshFooterLabel];
 //

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const DSNOTIFICATION_CHANGE_FONT_SIZE;
+
 @interface DSEpubConfig : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -15,7 +17,8 @@
 
 + (instancetype)shareInstance;
 
-- (NSInteger)fontSize;
+@property (assign, nonatomic) NSInteger fontSize;
+
 - (NSString *)fontName;
 
 

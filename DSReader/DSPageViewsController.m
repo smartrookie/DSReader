@@ -47,6 +47,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self setTopBarHidden:YES];
 }
 
 - (void)viewDidLoad
@@ -123,12 +124,6 @@
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
-- (void)middleZoneTapAction:(id)sender
-{
-    Boolean isHidden = self.navigationController.navigationBar.isHidden;
-    [self.navigationController setNavigationBarHidden:!isHidden animated:YES];
-}
-
 - (void)setTopBarHidden:(BOOL)hidden
 {
     if (_topBarHidden == hidden) return;
@@ -138,17 +133,6 @@
     [self.navigationController setToolbarHidden:hidden animated:YES];
 }
 
-- (void)singleTapAction:(UITapGestureRecognizer *)sender
-{
-    NSLog(@"sender = %@",NSStringFromCGPoint([sender locationInView:sender.view]));
-    
-    NSArray *views = self.viewControllers;
-    for (DSEpubPageView *view in views) {
-        NSLog(@"view.pageNum = %ld",(long)view.pageNum);
-    }
-    
-    //[self pageDownAction];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

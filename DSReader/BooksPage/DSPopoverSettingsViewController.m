@@ -6,6 +6,7 @@
 //  Copyright © 2016年 rookie. All rights reserved.
 //
 #import "DSPopoverSettingsViewController.h"
+#import "DSEpubConfig.h"
 
 
 // UIScreen Brightness
@@ -190,10 +191,12 @@
     if (sender == _fontAjustSizeCell.minuButton)
     {
         NSLog(@"变小");
+        [DSEpubConfig shareInstance].fontSize--;
     }
     else if (sender == _fontAjustSizeCell.plusButton)
     {
         NSLog(@"变大");
+        [DSEpubConfig shareInstance].fontSize++;
     }
     
     

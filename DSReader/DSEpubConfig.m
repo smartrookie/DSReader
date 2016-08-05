@@ -8,13 +8,15 @@
 
 #import "DSEpubConfig.h"
 
+NSString * const DSNOTIFICATION_CHANGE_FONT_SIZE = @"DSNOTIFICATION_CHANGE_FONT_SIZE";
+
 @implementation DSEpubConfig
 
 - (instancetype)_init
 {
     self = [super init];
     if (self) {
-        
+        _fontSize = 16;
     }
     return self;
 }
@@ -29,10 +31,15 @@
     return config;
 }
 
-- (NSInteger)fontSize
+- (void)setFontSize:(NSInteger)fontSize
 {
-    return 16;
+    if (fontSize > 10 && fontSize < 30)
+    {
+        _fontSize = fontSize;
+        [[NSNotificationCenter defaultCenter] postNotificationName:DSNOTIFICATION_CHANGE_FONT_SIZE object:@(fontSize)];
+    }
 }
+
 - (NSString *)fontName
 {
     return @"Helvetica";
