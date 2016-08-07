@@ -75,25 +75,19 @@
     _footerLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:_footerLabel];
     
-//    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
-//    longPress.numberOfTapsRequired = 1;
-//    longPress.numberOfTouchesRequired = 1;
-//    longPress.delegate = self;
-//    
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapAction:)];
     singleTap.numberOfTapsRequired = 1;
     singleTap.numberOfTouchesRequired = 1;
     singleTap.delaysTouchesEnded = NO;
     singleTap.delegate = self;
     
-//    [singleTap requireGestureRecognizerToFail:longPress];
-//    [_webView addGestureRecognizer:longPress];
     [_webView addGestureRecognizer:singleTap];
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_CHANGE_FONT_SIZE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_BROWSE_MODE_CHANGE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_PAGE_STYLE_CHANGE object:nil];
+    
+    [_webView setHidden:YES];
 }
 - (void)notificationHandleAction:(NSNotification *)sender
 {
@@ -365,6 +359,7 @@
 //
 //        self.epubVC.currentOffYIndexInPage=self.offYIndexInPage;
 //    }
+    [_webView setHidden:NO];
 }
 
 -(int)gotoOffYInPageWithOffYIndex:(NSInteger)offyIndex WithOffCountInPage:(NSInteger)offCountInPage

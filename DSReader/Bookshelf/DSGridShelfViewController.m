@@ -86,19 +86,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     DSGridBookCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    // Configure the cell
-//    static EpubModel *book;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        book = [EpubModel new];
-//        EpubParser *parser = [EpubParser new];
-//        [parser unzipEpub:book];
-////        - (void)storeEpubModel
-//        [[DSDatabase instance] storeEpubModel:book];
-//    });
-    
+
     EpubModel *book = _dataSource[indexPath.row];
-    
     cell.bookModel  = book;
     
     return cell;

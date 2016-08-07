@@ -36,7 +36,19 @@
     
     NSDictionary *options =[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin]
                                                        forKey: UIPageViewControllerOptionSpineLocationKey];
-    self = [self initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:options];
+    
+    if ([[DSEpubConfig shareInstance] browseModel] == DSPageBrowseModel_Page)
+    {
+        self = [self initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
+                       navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                     options:options];
+    }
+    else
+    {
+        self = [self initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                       navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                     options:options];
+    }
     if (self)
     {
         
