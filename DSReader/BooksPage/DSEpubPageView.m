@@ -127,6 +127,9 @@
         DSPageStyle style = [(NSNumber *)sender.object integerValue];
         UIColor *color = [[DSEpubConfig shareInstance] paperColorForPageStyle:style];
         self.view.backgroundColor = color;
+        NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
+        NSURL* baseURL = [NSURL fileURLWithPath:href];
+        [_webView loadHTMLString:[EpubParser htmlContentFromFile:href AddJsContent:[EpubParser jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
     }
 }
 
@@ -264,6 +267,25 @@
     [webView stringByEvaluatingJavaScriptFromString:textSizeRule1];
     [webView stringByEvaluatingJavaScriptFromString:textSizeRule2];
     
+    //背景主题
+    //NSString *bodycolor= [NSString stringWithFormat:@"addCSSRule('body', 'background-color: #f6e5c3;')"];
+    NSString *themeBodyColor= [[[DSEpubConfig shareInstance] currentThemeColor] hexString];
+    NSString *bodycolor= [NSString stringWithFormat:@"addCSSRule('body', 'background-color: %@;')",themeBodyColor];
+    [self.webView stringByEvaluatingJavaScriptFromString:bodycolor];
+    //
+    //    //NSString *textcolor1=[NSString stringWithFormat:@"addCSSRule('h1', 'color: #ffffff;')"];
+    //    NSString *themeTextColor=[self.epubVC.arrTheme[self.epubVC.themeIndex] objectForKey:@"textcolor"];
+    //    NSString *textcolor1=[NSString stringWithFormat:@"addCSSRule('h1', 'color: %@;')",themeTextColor];
+    //    [self.webView stringByEvaluatingJavaScriptFromString:textcolor1];
+    //
+    //    //NSString *textcolor2=[NSString stringWithFormat:@"addCSSRule('p', 'color: #ffffff;')"];
+    //    NSString *textcolor2=[NSString stringWithFormat:@"addCSSRule('p', 'color: %@;')",themeTextColor];
+    //    [self.webView stringByEvaluatingJavaScriptFromString:textcolor2];
+    
+    
+    
+    
+    
     
 //    if (self.calcPageOffy && self.pageRefIndex>-1)
 //    {
@@ -362,28 +384,6 @@
     
     [self.webView stringByEvaluatingJavaScriptFromString:goToOffsetFunc];
     [self.webView stringByEvaluatingJavaScriptFromString:goTo];
-    
-    
-    //背景主题
-    //NSString *bodycolor= [NSString stringWithFormat:@"addCSSRule('body', 'background-color: #f6e5c3;')"];
-//    NSString *themeBodyColor=[self.epubVC.arrTheme[self.epubVC.themeIndex] objectForKey:@"bodycolor"];
-//    NSString *bodycolor= [NSString stringWithFormat:@"addCSSRule('body', 'background-color: %@;')",themeBodyColor];
-//    [self.webView stringByEvaluatingJavaScriptFromString:bodycolor];
-//    
-//    //NSString *textcolor1=[NSString stringWithFormat:@"addCSSRule('h1', 'color: #ffffff;')"];
-//    NSString *themeTextColor=[self.epubVC.arrTheme[self.epubVC.themeIndex] objectForKey:@"textcolor"];
-//    NSString *textcolor1=[NSString stringWithFormat:@"addCSSRule('h1', 'color: %@;')",themeTextColor];
-//    [self.webView stringByEvaluatingJavaScriptFromString:textcolor1];
-//    
-//    //NSString *textcolor2=[NSString stringWithFormat:@"addCSSRule('p', 'color: #ffffff;')"];
-//    NSString *textcolor2=[NSString stringWithFormat:@"addCSSRule('p', 'color: %@;')",themeTextColor];
-//    [self.webView stringByEvaluatingJavaScriptFromString:textcolor2];
-    
-    //刷新显示文本
-    //[self refresh];
-    //
-    //    //刷新 epubVC Head,Foot
-    //    [self.epubVC refreshChapterLabel];
     
     return 1;
 }

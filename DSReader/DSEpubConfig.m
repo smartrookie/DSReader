@@ -94,5 +94,10 @@ NSString * const DSNOTIFICATION_PAGE_STYLE_CHANGE = @"DSNOTIFICATION_PAGE_STYLE_
     return color;
 }
 
+- (UIColor *)currentThemeColor
+{
+    return [self paperColorForPageStyle:self.pageStyle];
+}
+
 
 @end

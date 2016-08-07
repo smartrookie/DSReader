@@ -40,5 +40,7 @@ typedef enum : NSUInteger {
 
 - (UIColor *)paperColorForPageStyle:(DSPageStyle)style;
 
+- (UIColor *)currentThemeColor;
+
 
 @end
