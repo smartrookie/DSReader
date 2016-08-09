@@ -20,6 +20,8 @@
 @property (nonatomic) EpubModel *epuModel;
 @property (nonatomic, getter=isTopBarHidden, assign) BOOL topBarHidden;
 
+@property (strong, nonatomic) DSEpubPageView *installPageView;
+
 @end
 
 @implementation DSPageViewsController
@@ -29,6 +31,17 @@
     self = [self init];
     _epuModel = model;
     return self;
+}
+- (instancetype)initEpubModel:(EpubModel *)model andDSEpubPageView:(DSEpubPageView *)pageView
+{
+    self = [self initEpubModel:model];
+    _installPageView = pageView;
+    return self;
+}
+
+- (DSEpubPageView *)currentPageView
+{
+    return self.viewControllers[0];
 }
 
 - (instancetype)init
@@ -70,49 +83,21 @@
     self.dataSource = self;
     self.view.backgroundColor = [UIColor whiteColor];
     
-    DSEpubPageView *pageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
-    pageView.pageNum = 0;
-    pageView.chapterIndex = 0;
+    DSEpubPageView *pageView;
+    if (!_installPageView)
+    {
+        pageView = [[DSEpubPageView alloc] initWithModel:_epuModel];
+        pageView.pageNum = 0;
+        pageView.chapterIndex = 0;
+    }
+    else
+    {
+        pageView = _installPageView;
+    }
     pageView.tapDelegate = self;
     [self setViewControllers:@[pageView] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    
-    
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavigationBackArrowNormal"]
-//                                                                 style:UIBarButtonItemStylePlain
-//                                                                target:self
-//                                                                action:@selector(backAction:)];
-//    
-//    UIBarButtonItem *cateItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"]
-//                                                                 style:UIBarButtonItemStylePlain
-//                                                                target:self
-//                                                                action:@selector(backAction:)];
-//    
-//    self.navigationItem.leftBarButtonItems = @[backItem,cateItem];
-//    
-//    
-//    
-//    
-//    
-//    UIBarButtonItem *cateItem_0 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"TabIconSettings"]
-//                                                                   style:UIBarButtonItemStylePlain
-//                                                                  target:self
-//                                                                  action:@selector(toolBarSettingsAction:)];
-//    UIBarButtonItem *blankItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-//                                                                               target:nil
-//                                                                               action:nil];
-//    
-//    
-//    [self setToolbarItems:@[blankItem,cateItem_0]];
-//    [self.navigationController setToolbarHidden:NO];
-    
 }
-
-//- (void)toolBarSettingsAction:(UIBarButtonItem *)sender
-//{
-//    DSPopoverSettingsViewController *pop = [[DSPopoverSettingsViewController alloc] initWithBarButtonItem:sender];
-//    [self presentViewController:pop animated:YES completion:nil];
-//}
 
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller traitCollection:(UITraitCollection *)traitCollection {
     return UIModalPresentationPopover; // 20
@@ -122,13 +107,6 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller.presentedViewController];
     return navController; // 21
 }
-
-
-
-//- (void)backAction:(id)sender
-//{
-//    [self dismissViewControllerAnimated:NO completion:nil];
-//}
 
 - (void)setTopBarHidden:(BOOL)hidden
 {

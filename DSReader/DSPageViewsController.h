@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "EpubModel.h"
+@class DSEpubPageView;
 
 @interface DSPageViewsController : UIPageViewController
 
 + (instancetype)new NS_UNAVAILABLE;
 
 - (instancetype)initEpubModel:(EpubModel *)model;
+
+
+@property (strong, nonatomic, readonly) DSEpubPageView *currentPageView;
+- (instancetype)initEpubModel:(EpubModel *)model andDSEpubPageView:(DSEpubPageView *)pageView;
 
 @end

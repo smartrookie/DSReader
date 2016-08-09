@@ -84,7 +84,6 @@
     [_webView addGestureRecognizer:singleTap];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_CHANGE_FONT_SIZE object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_BROWSE_MODE_CHANGE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_PAGE_STYLE_CHANGE object:nil];
     
     [_webView setHidden:YES];
@@ -110,11 +109,6 @@
                [_webView loadHTMLString:[EpubParser htmlContentFromFile:href AddJsContent:[EpubParser jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
             });
         }
-    }
-    else if (sender.name == DSNOTIFICATION_BROWSE_MODE_CHANGE)
-    {
-        //DSPageBrowseModel model = [(NSNumber *)sender.object integerValue];
-        NSLog(@"Brose Model Changed");
     }
     else if (sender.name == DSNOTIFICATION_PAGE_STYLE_CHANGE)
     {

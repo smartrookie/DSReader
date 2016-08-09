@@ -9,6 +9,7 @@
 #import "DSPagesManagerController.h"
 #import "DSPopoverSettingsViewController.h"
 #import "DSPageViewsController.h"
+#import "DSEpubConfig.h"
 
 @interface DSPagesManagerController ()
 
@@ -61,8 +62,27 @@
     
     [self setToolbarItems:@[blankItem,cateItem_0]];
     [self.navigationController setToolbarHidden:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_BROWSE_MODE_CHANGE object:nil];
 }
 
+- (void)notificationHandleAction:(NSNotification *)sender
+{
+    if (sender.name == DSNOTIFICATION_BROWSE_MODE_CHANGE)
+    {
+        DSEpubPageView *pageView = _pageViewController.currentPageView;
+        [_pageViewController removeFromParentViewController];
+        [_pageViewController.view removeFromSuperview];
+        _pageViewController = [[DSPageViewsController alloc] initEpubModel:_epubModel andDSEpubPageView:pageView];
+        [self.view addSubview:_pageViewController.view];
+        [self addChildViewController:_pageViewController];
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)backAction:(id)sender
 {
