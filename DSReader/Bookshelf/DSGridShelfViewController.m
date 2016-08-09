@@ -13,6 +13,7 @@
 #import "DSPageViewsController.h"
 #import "DSDatabase.h"
 #import "DSNavigationController.h"
+#import "DSPagesManagerController.h"
 
 @interface DSGridShelfViewController ()<UICollectionViewDelegateFlowLayout>
 {
@@ -97,10 +98,12 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     DSGridBookCell *cell = (DSGridBookCell *)[collectionView cellForItemAtIndexPath:indexPath];
     EpubModel *epub = cell.bookModel;
-    DSPageViewsController *pageVctrl = [[DSPageViewsController alloc] initEpubModel:epub];
+//    DSPageViewsController *pageVctrl = [[DSPageViewsController alloc] initEpubModel:epub];
     
-    DSNavigationController *navi = [[DSNavigationController alloc] initWithRootViewController:pageVctrl];
+    DSPagesManagerController *manager = [[DSPagesManagerController alloc] initEpubModel:epub];
+    DSNavigationController *navi = [[DSNavigationController alloc] initWithRootViewController:manager];
     [self presentViewController:navi animated:YES completion:nil];
+    
 }
 
 #pragma mark <UICollectionViewDelegate>

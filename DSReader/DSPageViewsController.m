@@ -77,41 +77,42 @@
     [self setViewControllers:@[pageView] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavigationBackArrowNormal"]
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(backAction:)];
     
-    UIBarButtonItem *cateItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"]
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(backAction:)];
-    
-    self.navigationItem.leftBarButtonItems = @[backItem,cateItem];
-    
-    
-    
-    
-    
-    UIBarButtonItem *cateItem_0 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"TabIconSettings"]
-                                                                   style:UIBarButtonItemStylePlain
-                                                                  target:self
-                                                                  action:@selector(toolBarSettingsAction:)];
-    UIBarButtonItem *blankItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                               target:nil
-                                                                               action:nil];
-    
-    
-    [self setToolbarItems:@[blankItem,cateItem_0]];
-    [self.navigationController setToolbarHidden:NO];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavigationBackArrowNormal"]
+//                                                                 style:UIBarButtonItemStylePlain
+//                                                                target:self
+//                                                                action:@selector(backAction:)];
+//    
+//    UIBarButtonItem *cateItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"]
+//                                                                 style:UIBarButtonItemStylePlain
+//                                                                target:self
+//                                                                action:@selector(backAction:)];
+//    
+//    self.navigationItem.leftBarButtonItems = @[backItem,cateItem];
+//    
+//    
+//    
+//    
+//    
+//    UIBarButtonItem *cateItem_0 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"TabIconSettings"]
+//                                                                   style:UIBarButtonItemStylePlain
+//                                                                  target:self
+//                                                                  action:@selector(toolBarSettingsAction:)];
+//    UIBarButtonItem *blankItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+//                                                                               target:nil
+//                                                                               action:nil];
+//    
+//    
+//    [self setToolbarItems:@[blankItem,cateItem_0]];
+//    [self.navigationController setToolbarHidden:NO];
     
 }
 
-- (void)toolBarSettingsAction:(UIBarButtonItem *)sender
-{
-    DSPopoverSettingsViewController *pop = [[DSPopoverSettingsViewController alloc] initWithBarButtonItem:sender];
-    [self presentViewController:pop animated:YES completion:nil];
-}
+//- (void)toolBarSettingsAction:(UIBarButtonItem *)sender
+//{
+//    DSPopoverSettingsViewController *pop = [[DSPopoverSettingsViewController alloc] initWithBarButtonItem:sender];
+//    [self presentViewController:pop animated:YES completion:nil];
+//}
 
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller traitCollection:(UITraitCollection *)traitCollection {
     return UIModalPresentationPopover; // 20
@@ -124,10 +125,10 @@
 
 
 
-- (void)backAction:(id)sender
-{
-    [self dismissViewControllerAnimated:NO completion:nil];
-}
+//- (void)backAction:(id)sender
+//{
+//    [self dismissViewControllerAnimated:NO completion:nil];
+//}
 
 - (void)setTopBarHidden:(BOOL)hidden
 {
