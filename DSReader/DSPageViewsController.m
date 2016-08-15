@@ -69,12 +69,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self setTopBarHidden:YES];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

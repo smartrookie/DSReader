@@ -34,6 +34,7 @@
     
     [self.view addSubview:_pageViewController.view];
     [self addChildViewController:_pageViewController];
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavigationBackArrowNormal"]
                                                                  style:UIBarButtonItemStylePlain
@@ -66,16 +67,28 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_BROWSE_MODE_CHANGE object:nil];
 }
 
-- (void)notificationHandleAction:(NSNotification *)sender
+- (void)reloadPageViewController
 {
-    if (sender.name == DSNOTIFICATION_BROWSE_MODE_CHANGE)
+    if (_pageViewController)
     {
         DSEpubPageView *pageView = _pageViewController.currentPageView;
         [_pageViewController removeFromParentViewController];
         [_pageViewController.view removeFromSuperview];
         _pageViewController = [[DSPageViewsController alloc] initEpubModel:_epubModel andDSEpubPageView:pageView];
-        [self.view addSubview:_pageViewController.view];
-        [self addChildViewController:_pageViewController];
+    }
+    else
+    {
+        _pageViewController = [[DSPageViewsController alloc] initEpubModel:_epubModel];
+    }
+    [self.view addSubview:_pageViewController.view];
+    [self addChildViewController:_pageViewController];
+}
+
+- (void)notificationHandleAction:(NSNotification *)sender
+{
+    if (sender.name == DSNOTIFICATION_BROWSE_MODE_CHANGE)
+    {
+        [self reloadPageViewController];
     }
 }
 
