@@ -7,12 +7,23 @@
 //
 
 #import "DSCatalogViewController.h"
+#import "EpubModel.h"
 
 @interface DSCatalogViewController ()
+
+@property (strong, nonatomic) EpubModel *epubModel;
+@property (strong, nonatomic) NSArray<NavPoint *> *dataSource;
 
 @end
 
 @implementation DSCatalogViewController
+
+- (instancetype)initEpubModel:(EpubModel *)epub
+{
+    self = [super init];
+    _epubModel = epub;
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +33,11 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    self.tableView.tableFooterView = [UIView new];
+    
+    _dataSource = _epubModel.navPoints;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,24 +48,25 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return _dataSource.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    
+    NavPoint *point = _dataSource[indexPath.row];
+    cell.textLabel.text = point.text;
+    
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

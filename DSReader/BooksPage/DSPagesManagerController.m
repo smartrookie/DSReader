@@ -10,11 +10,17 @@
 #import "DSPopoverSettingsViewController.h"
 #import "DSPageViewsController.h"
 #import "DSEpubConfig.h"
+#import "DSCatalogViewController.h"
 
 @interface DSPagesManagerController ()
 
 @property (strong, nonatomic) EpubModel *epubModel;
 @property (strong, nonatomic) DSPageViewsController *pageViewController;
+@property (strong, nonatomic) DSCatalogViewController *catalogViewController;
+
+
+@property (strong, nonatomic) UIBarButtonItem *cateItem;
+@property (assign, nonatomic) BOOL            showCatalog;
 
 @end
 
@@ -41,12 +47,12 @@
                                                                 target:self
                                                                 action:@selector(backAction:)];
     
-    UIBarButtonItem *cateItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"]
+    _cateItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
-                                                                action:@selector(backAction:)];
+                                                                action:@selector(menuAction:)];
     
-    self.navigationItem.leftBarButtonItems = @[backItem,cateItem];
+    self.navigationItem.leftBarButtonItems = @[backItem,_cateItem];
     
     
     
@@ -95,6 +101,34 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)setShowCatalog:(BOOL)showCatalog
+{
+    _showCatalog = showCatalog;
+    
+    if (showCatalog)
+    {
+        if (!_catalogViewController) {
+            _catalogViewController = [[DSCatalogViewController alloc] initEpubModel:_epubModel];
+            [self.view addSubview:_catalogViewController.view];
+            [self addChildViewController:_catalogViewController];
+        }
+        [self.view bringSubviewToFront:_catalogViewController.view];
+        [_cateItem setImage:nil];
+        [_cateItem setTitle:@"续读"];
+    }
+    else
+    {
+        [self.view bringSubviewToFront:_pageViewController.view];
+        [_cateItem setTitle:nil];
+        [_cateItem setImage:[UIImage imageNamed:@"Menu"]];
+    }
+}
+
+- (void)menuAction:(UIBarButtonItem *)sender
+{
+    self.showCatalog = !self.showCatalog;
 }
 
 - (void)backAction:(id)sender
