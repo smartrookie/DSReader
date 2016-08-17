@@ -16,6 +16,7 @@
 
 - (instancetype)initEpubModel:(EpubModel *)model;
 
+- (void)setTopBarHidden:(BOOL)hidden;
 
 @property (strong, nonatomic, readonly) DSEpubPageView *currentPageView;
 - (instancetype)initEpubModel:(EpubModel *)model andDSEpubPageView:(DSEpubPageView *)pageView;

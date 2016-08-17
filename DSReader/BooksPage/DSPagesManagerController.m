@@ -92,6 +92,11 @@
     [self.view bringSubviewToFront:_pageViewController.view];
 }
 
+- (void)setTopBarHidden:(BOOL)hidden
+{
+    [self.pageViewController setTopBarHidden:hidden];
+}
+
 - (void)notificationHandleAction:(NSNotification *)sender
 {
     if (sender.name == DSNOTIFICATION_BROWSE_MODE_CHANGE)
@@ -124,6 +129,7 @@
                 [weakSelf reloadPageViewController];
                 [[NSNotificationCenter defaultCenter] postNotificationName:DSNOTIFICATION_RELOAD_EPUB object:nil];
                 weakSelf.showCatalog = NO;
+                [weakSelf setTopBarHidden:YES];
             }];
             [_catalogViewController.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.height
                                                                                , 0
