@@ -24,7 +24,6 @@
 		65610AA01D2CB45200227711 /* DSEpubPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65610A9F1D2CB45200227711 /* DSEpubPageView.m */; };
 		65610AA31D2CF76B00227711 /* DSEpubConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 65610AA21D2CF76B00227711 /* DSEpubConfig.m */; };
 		6569106C1D5314A80096C936 /* DSPopoverSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6569106B1D5314A80096C936 /* DSPopoverSettingsViewController.m */; };
-		657125A31D63000200A8EB86 /* RubyMotion.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 657125A21D63000200A8EB86 /* RubyMotion.pdf */; };
 		657125A61D63235A00A8EB86 /* DSCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657125A51D63235A00A8EB86 /* DSCatalogViewController.m */; };
 		657579DE1D2A470400CAEADB /* EpubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 657579DD1D2A470400CAEADB /* EpubModel.m */; };
 		657579E21D2A4AFA00CAEADB /* EpubParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 657579E11D2A4AFA00CAEADB /* EpubParser.m */; };
@@ -70,7 +69,6 @@
 		65610AA21D2CF76B00227711 /* DSEpubConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSEpubConfig.m; sourceTree = "<group>"; };
 		6569106A1D5314A80096C936 /* DSPopoverSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPopoverSettingsViewController.h; sourceTree = "<group>"; };
 		6569106B1D5314A80096C936 /* DSPopoverSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPopoverSettingsViewController.m; sourceTree = "<group>"; };
-		657125A21D63000200A8EB86 /* RubyMotion.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = RubyMotion.pdf; sourceTree = "<group>"; };
 		657125A41D63235A00A8EB86 /* DSCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSCatalogViewController.h; sourceTree = "<group>"; };
 		657125A51D63235A00A8EB86 /* DSCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSCatalogViewController.m; sourceTree = "<group>"; };
 		657579DA1D2A3A8700CAEADB /* DSReaderPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSReaderPrefixHeader.pch; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 				DEFD707C1D4DE437009EA9E9 /* 为人处世曾国藩.epub */,
 				655FA88B1D251363005A5A52 /* yiqiantulong.txt */,
 				655FA8891D2511ED005A5A52 /* yiqiantulong.epub */,
-				657125A21D63000200A8EB86 /* RubyMotion.pdf */,
 			);
 			path = BooksDemo;
 			sourceTree = "<group>";
@@ -333,7 +330,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				655FA8691D24F2F1005A5A52 /* LaunchScreen.storyboard in Resources */,
-				657125A31D63000200A8EB86 /* RubyMotion.pdf in Resources */,
 				655FA8661D24F2F1005A5A52 /* Assets.xcassets in Resources */,
 				655FA88C1D251363005A5A52 /* yiqiantulong.txt in Resources */,
 				655FA88A1D2511ED005A5A52 /* yiqiantulong.epub in Resources */,
