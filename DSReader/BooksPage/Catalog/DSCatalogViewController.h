@@ -18,4 +18,6 @@
 
 @property (assign, nonatomic) NSInteger chapterIndex;
 
+@property (copy, nonatomic) void (^selectedAtChapterIndex)(NSInteger chaterIndex);
+
 @end

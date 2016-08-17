@@ -48,7 +48,7 @@
     _headerLabel.textColor = [UIColor ds_lightGrayColor];
     _headerLabel.font = [UIFont systemFontOfSize:13];
     [self.view addSubview:_headerLabel];
-    _headerLabel.text = _epub.navPoints[_chapterIndex].text;
+    [self refreshHeaderLabel];
     
     
     _webView = [DSWebView new];
@@ -85,8 +85,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_CHANGE_FONT_SIZE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_PAGE_STYLE_CHANGE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandleAction:) name:DSNOTIFICATION_RELOAD_EPUB object:nil];
     
-    [_webView setHidden:YES];
+//    [_webView setHidden:YES];
 }
 - (void)notificationHandleAction:(NSNotification *)sender
 {
@@ -118,6 +119,13 @@
         NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
         NSURL* baseURL = [NSURL fileURLWithPath:href];
         [_webView loadHTMLString:[EpubParser htmlContentFromFile:href AddJsContent:[EpubParser jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
+    }
+    else if (sender.name == DSNOTIFICATION_RELOAD_EPUB)
+    {
+        NSString *href = [self pageHrefByPageRefIndex:_chapterIndex];
+        NSURL* baseURL = [NSURL fileURLWithPath:href];
+        [_webView loadHTMLString:[EpubParser htmlContentFromFile:href AddJsContent:[EpubParser jsContentWithViewRect:self.view.bounds]] baseURL:baseURL];
+        [self refreshHeaderLabel];
     }
 }
 
@@ -192,6 +200,20 @@
     return _pageCount;
 }
 
+- (void)refreshHeaderLabel
+{
+    NSString *text = @"";
+    if (_chapterIndex == 0)
+    {
+        text = @"";
+    }
+    else
+    {
+        text = _epub.navPoints[_chapterIndex - 1].text;
+    }
+    _headerLabel.text = text;
+}
+
 - (void)refreshFooterLabel
 {
     NSString *footer = [NSString stringWithFormat:@"%d / %d",(int)_pageNum + 1,(int)_pageCount];
@@ -240,7 +262,12 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    return navigationType != UIWebViewNavigationTypeLinkClicked;
+    BOOL should = navigationType != UIWebViewNavigationTypeLinkClicked;
+    if (should)
+    {
+        [self.view setAlpha:0];
+    }
+    return should;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -350,10 +377,6 @@
     }
     [self gotoOffYInPageWithOffYIndex:_pageNum WithOffCountInPage:offCountInPage];
     [self refreshFooterLabel];
-//
-//        self.epubVC.currentOffYIndexInPage=self.offYIndexInPage;
-//    }
-    [_webView setHidden:NO];
 }
 
 -(int)gotoOffYInPageWithOffYIndex:(NSInteger)offyIndex WithOffCountInPage:(NSInteger)offCountInPage
@@ -374,6 +397,7 @@
     [self.webView stringByEvaluatingJavaScriptFromString:goToOffsetFunc];
     [self.webView stringByEvaluatingJavaScriptFromString:goTo];
     
+    [self.view setAlpha:1];
     return 1;
 }
 

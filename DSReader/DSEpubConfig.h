@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const DSNOTIFICATION_RELOAD_EPUB;
 extern NSString * const DSNOTIFICATION_CHANGE_FONT_SIZE;
 extern NSString * const DSNOTIFICATION_BROWSE_MODE_CHANGE;
 extern NSString * const DSNOTIFICATION_PAGE_STYLE_CHANGE;

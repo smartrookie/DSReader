@@ -89,6 +89,7 @@
     }
     [self.view addSubview:_pageViewController.view];
     [self addChildViewController:_pageViewController];
+    [self.view bringSubviewToFront:_pageViewController.view];
 }
 
 - (void)notificationHandleAction:(NSNotification *)sender
@@ -112,6 +113,17 @@
     {
         if (!_catalogViewController) {
             _catalogViewController = [[DSCatalogViewController alloc] initEpubModel:_epubModel];
+            
+            __weak typeof(self) weakSelf = self;
+            [_catalogViewController setSelectedAtChapterIndex:^(NSInteger chaterIndex)
+            {
+                DSEpubPageView *pageView = weakSelf.pageViewController.currentPageView;
+                pageView.chapterIndex = chaterIndex;
+                pageView.pageNum = 0;
+                [weakSelf reloadPageViewController];
+                [[NSNotificationCenter defaultCenter] postNotificationName:DSNOTIFICATION_RELOAD_EPUB object:nil];
+                weakSelf.showCatalog = NO;
+            }];
             [_catalogViewController.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.height
                                                                                , 0
                                                                                , self.navigationController.toolbar.height
