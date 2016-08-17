@@ -19,10 +19,7 @@
 @property (strong, nonatomic) UILabel *headerLabel;
 @property (strong, nonatomic) UILabel *footerLabel;
 
-/**
- * 仅在切换字体大小时需要根据进度刷新页面
- *****/
-@property (assign, nonatomic) float progress;
+
 
 @end
 

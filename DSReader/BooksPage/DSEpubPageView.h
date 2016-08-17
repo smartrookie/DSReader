@@ -31,6 +31,11 @@ typedef enum : NSUInteger {
 @property (nonatomic) NSInteger pageNum;
 @property (nonatomic) NSInteger pageCount;
 
+/**
+ * 仅在切换字体大小时需要根据进度刷新页面
+ *****/
+@property (assign, nonatomic) float progress;
+
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new  NS_UNAVAILABLE;

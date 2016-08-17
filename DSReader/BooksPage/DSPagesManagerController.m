@@ -120,6 +120,7 @@
                 DSEpubPageView *pageView = weakSelf.pageViewController.currentPageView;
                 pageView.chapterIndex = chaterIndex;
                 pageView.pageNum = 0;
+                pageView.progress = 0;
                 [weakSelf reloadPageViewController];
                 [[NSNotificationCenter defaultCenter] postNotificationName:DSNOTIFICATION_RELOAD_EPUB object:nil];
                 weakSelf.showCatalog = NO;
