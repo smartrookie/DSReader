@@ -11,6 +11,7 @@
 #import "DSPageViewsController.h"
 #import "DSEpubConfig.h"
 #import "DSCatalogViewController.h"
+#import "DSEpubPageView.h"
 
 @interface DSPagesManagerController ()
 
@@ -120,14 +121,26 @@
             [self addChildViewController:_catalogViewController];
         }
         [self.view bringSubviewToFront:_catalogViewController.view];
+        _catalogViewController.chapterIndex = _pageViewController.currentPageView.chapterIndex;
         [_cateItem setImage:nil];
         [_cateItem setTitle:@"续读"];
+        [self setToolbarItems:nil];
     }
     else
     {
         [self.view bringSubviewToFront:_pageViewController.view];
         [_cateItem setTitle:nil];
         [_cateItem setImage:[UIImage imageNamed:@"Menu"]];
+        
+        UIBarButtonItem *cateItem_0 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"TabIconSettings"]
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(toolBarSettingsAction:)];
+        UIBarButtonItem *blankItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                   target:nil
+                                                                                   action:nil];
+        
+        [self setToolbarItems:@[blankItem,cateItem_0]];
     }
 }
 

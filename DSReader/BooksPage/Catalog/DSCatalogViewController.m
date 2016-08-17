@@ -38,11 +38,23 @@
     self.tableView.tableFooterView = [UIView new];
     
     _dataSource = _epubModel.navPoints;
+    self.tableView.estimatedRowHeight = 44;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setChapterIndex:(NSInteger)chapterIndex
+{
+    if (chapterIndex >= _dataSource.count)
+        _chapterIndex = 0;
+    else
+        _chapterIndex = chapterIndex;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:chapterIndex inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 #pragma mark - Table view data source
@@ -59,7 +71,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    
+    cell.textLabel.numberOfLines = 0;
     NavPoint *point = _dataSource[indexPath.row];
     cell.textLabel.text = point.text;
     

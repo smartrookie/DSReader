@@ -16,4 +16,6 @@
 
 - (instancetype)initEpubModel:(EpubModel *)epub;
 
+@property (assign, nonatomic) NSInteger chapterIndex;
+
 @end
