@@ -111,6 +111,11 @@
     {
         if (!_catalogViewController) {
             _catalogViewController = [[DSCatalogViewController alloc] initEpubModel:_epubModel];
+            [_catalogViewController.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.height
+                                                                               , 0
+                                                                               , self.navigationController.toolbar.height
+                                                                               , 0)];
+            [_catalogViewController.tableView setScrollIndicatorInsets:_catalogViewController.tableView.contentInset];
             [self.view addSubview:_catalogViewController.view];
             [self addChildViewController:_catalogViewController];
         }
