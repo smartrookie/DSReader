@@ -29,7 +29,7 @@
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+     self.clearsSelectionOnViewWillAppear = YES;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -48,15 +48,23 @@
 
 - (void)setChapterIndex:(NSInteger)chapterIndex
 {
-    if (chapterIndex >= _dataSource.count)
-        _chapterIndex = 0;
-    else
-        _chapterIndex = chapterIndex;
+    PageRef *ref = _epubModel.pageRefs[chapterIndex];
+    NSInteger count = -1;
+    for (NavPoint *point in _epubModel.navPoints) {
+        if ([ref.idref isEqualToString:point.navId]) {
+            count = [_epubModel.navPoints indexOfObject:point];
+            break;
+        }
+    }
     
-    if (_chapterIndex > 0)
+    if (count >= 0)
     {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:chapterIndex inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:count inSection:0];
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    }
+    else
+    {
+        [self.tableView clearSelectedRowsAnimated:NO];
     }
 }
 
