@@ -55,7 +55,7 @@
     
     if (_chapterIndex > 0)
     {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:chapterIndex - 1 inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:chapterIndex inSection:0];
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
     }
 }
@@ -84,9 +84,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger row = indexPath.row + 1;
+    NavPoint *point = _dataSource[indexPath.row];
+    NSInteger count = 0;
+    for (PageRef *ref in _epubModel.pageRefs) {
+        if ([ref.idref isEqualToString:point.navId]) {
+            count = [_epubModel.pageRefs indexOfObject:ref];
+            break;
+        }
+    }
     if (_selectedAtChapterIndex) {
-        _selectedAtChapterIndex(row);
+        _selectedAtChapterIndex(count);
     }
 }
 

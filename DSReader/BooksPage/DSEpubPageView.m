@@ -199,14 +199,13 @@
 
 - (void)refreshHeaderLabel
 {
+    PageRef *ref = _epub.pageRefs[_chapterIndex];
     NSString *text = @"";
-    if (_chapterIndex == 0)
-    {
-        text = @"";
-    }
-    else
-    {
-        text = _epub.navPoints[_chapterIndex - 1].text;
+    for (NavPoint *nav in _epub.navPoints) {
+        if ([nav.navId isEqualToString:ref.idref]) {
+            text = nav.text;
+            break;
+        }
     }
     _headerLabel.text = text;
 }
