@@ -35,7 +35,11 @@
 
 @interface EpubModel : NSObject
 
+- (instancetype)initWithEpubPath:(NSString *)Path;
 - (instancetype)initWithEpubName:(NSString *)name;
+
+@property (nonatomic) NSData *fileData;
+@property (nonatomic) NSString *epubName;
 
 @property (nonatomic) NSInteger eid;
 @property (nonatomic) NSString *path;

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class EpubModel;
+@class BookModel;
 
 @interface DSDatabase : NSObject
 
@@ -18,6 +19,7 @@
 - (void)storeEpubModel:(EpubModel *)model;
 
 
+
 - (NSArray *)allEpubModel;
 
 - (NSArray *)navPointsByEpubId:(NSString *)epuId;
@@ -25,7 +27,8 @@
 - (NSArray *)pageItemsByEpubId:(NSString *)epuId;
 
 
-
+//BookModel
+- (NSArray<BookModel *> *)allBooks;
 
 
 

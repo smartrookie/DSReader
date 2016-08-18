@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "EpubModel.h"
 #import "EpubParser.h"
+#import "BookModel.h"
 
 static const char *databaseQueueSpecific = "com.dsreader.databasequeue";
 static dispatch_queue_t databaseDispatchQueue = nil;
@@ -234,6 +235,9 @@ DSDatabase *TGDatabaseInstance()
 
 - (void)createDataBaseVersion0
 {
+    NSString *epub_fileSql = @"CREATE TABLE IF NOT EXISTS books_table (indexId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, filePath TEXT, hasUnzip BOOL DEFAULT NO, bookType INTEGER DEFAULT 1)";
+    [_database executeUpdate:epub_fileSql];
+    
     NSString *epub_modelSql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS epub_model (eid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, path TEXT, unzipPath TEXT, manifestPath TEXT, opf_file TEXT, ncx_file TEXT, identifier TEXT, title TEXT, creator TEXT, contributor TEXT, publisher TEXT, date TEXT, subject TEXT, language TEXT, dcdescription TEXT, coverPath TEXT);"];
     
     [_database executeUpdate:epub_modelSql];
@@ -251,15 +255,23 @@ DSDatabase *TGDatabaseInstance()
     [_database executeUpdate:pageRef_modelSql];
     
     
-    EpubModel *book= [[EpubModel alloc] initWithEpubName:@"为人处世曾国藩"];
-    EpubParser *parser = [EpubParser new];
-    [parser unzipEpub:book];
-    [[DSDatabase instance] storeEpubModel:book];
+    
+    static NSString *insertEpubFile = @"INSERT OR REPLACE INTO books_table (filePath) VALUES(?)";
     
     
-    book = [[EpubModel alloc] initWithEpubName:@"yiqiantulong"];
-    [parser unzipEpub:book];
-    [[DSDatabase instance] storeEpubModel:book];
+    [_database executeUpdate:insertEpubFile,[[NSBundle mainBundle] pathForResource:@"为人处世曾国藩" ofType:@"epub" inDirectory:nil]];
+    [_database executeUpdate:insertEpubFile,[[NSBundle mainBundle] pathForResource:@"yiqiantulong" ofType:@"epub" inDirectory:nil]];
+    
+    
+    NSArray *books = [self allBooks];
+    for (BookModel *model in books) {
+        NSLog(@"book`s id = %ld isUnzip = %d WithType = %lu",(long)model.indexId, model.hasUnzip, (unsigned long)model.bookType);
+        
+        EpubModel *book= [[EpubModel alloc] initWithEpubPath:model.filePath];
+        EpubParser *parser = [EpubParser new];
+        [parser unzipEpub:book];
+        [[DSDatabase instance] storeEpubModel:book];
+    }
 }
 
 
@@ -290,6 +302,25 @@ DSDatabase *TGDatabaseInstance()
     
     NSLog(@"insert success and new eid = %d",(int)model.eid);
     
+}
+
+//BookModel
+- (NSArray<BookModel *> *)allBooks
+{
+    NSMutableArray *array = @[].mutableCopy;
+    static NSString *sql = @"SELECT indexId , hasUnzip , bookType , filePath FROM books_table";
+    
+    FMResultSet *result = [_database executeQuery:sql];
+    while (result.next) {
+        BookModel *model = [BookModel new];
+        model.indexId    = [result intForColumn:@"indexId"];
+        model.hasUnzip   = [result boolForColumn:@"hasUnzip"];
+        model.bookType   = [result intForColumn:@"bookType"];
+        model.filePath   = [result stringForColumn:@"filePath"];
+        
+        [array addObject:model];
+    }
+    return array;
 }
 
 

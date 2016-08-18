@@ -22,21 +22,29 @@
     return self;
 }
 
+- (instancetype)initWithEpubPath:(NSString *)path
+{
+    self = [self init];
+    _path = path;
+    return self;
+}
+
 - (instancetype)initWithEpubName:(NSString *)name
 {
     self = [self init];
+    _epubName = name;
     _path = [[NSBundle mainBundle] pathForResource:name ofType:@"epub" inDirectory:nil];
     return self;
 }
 
-- (NSString *)path
-{
-    if (_path) {
-        return _path;
-    }
-    _path = [[NSBundle mainBundle] pathForResource:@"yiqiantulong" ofType:@"epub" inDirectory:nil];
-    return _path;
-}
+//- (NSString *)path
+//{
+//    if (_path) {
+//        return _path;
+//    }
+//    _path = [[NSBundle mainBundle] pathForResource:@"yiqiantulong" ofType:@"epub" inDirectory:nil];
+//    return _path;
+//}
 
 - (NSString *)absolutePath:(NSString *)subPath
 {
