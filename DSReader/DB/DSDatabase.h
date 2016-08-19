@@ -10,6 +10,8 @@
 @class EpubModel;
 @class BookModel;
 
+extern NSString * const DSNOTIFICATION_DATABASE_NEW_BOOK;
+
 @interface DSDatabase : NSObject
 
 + (instancetype)instance;

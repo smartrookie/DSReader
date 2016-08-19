@@ -13,6 +13,7 @@
 #import "EpubParser.h"
 #import "BookModel.h"
 
+NSString * const DSNOTIFICATION_DATABASE_NEW_BOOK = @"DSNOTIFICATION_DATABASE_NEW_BOOK";
 static const char *databaseQueueSpecific = "com.dsreader.databasequeue";
 static dispatch_queue_t databaseDispatchQueue = nil;
 
@@ -258,20 +259,23 @@ DSDatabase *TGDatabaseInstance()
     
     static NSString *insertEpubFile = @"INSERT OR REPLACE INTO books_table (filePath) VALUES(?)";
     
-    
-    [_database executeUpdate:insertEpubFile,[[NSBundle mainBundle] pathForResource:@"为人处世曾国藩" ofType:@"epub" inDirectory:nil]];
-    [_database executeUpdate:insertEpubFile,[[NSBundle mainBundle] pathForResource:@"yiqiantulong" ofType:@"epub" inDirectory:nil]];
-    
-    
-    NSArray *books = [self allBooks];
-    for (BookModel *model in books) {
-        NSLog(@"book`s id = %ld isUnzip = %d WithType = %lu",(long)model.indexId, model.hasUnzip, (unsigned long)model.bookType);
+
+    [self dispatchOnDatabaseThread:^{
+        [_database executeUpdate:insertEpubFile,[[NSBundle mainBundle] pathForResource:@"为人处世曾国藩" ofType:@"epub" inDirectory:nil]];
+        [_database executeUpdate:insertEpubFile,[[NSBundle mainBundle] pathForResource:@"yiqiantulong" ofType:@"epub" inDirectory:nil]];
         
-        EpubModel *book= [[EpubModel alloc] initWithEpubPath:model.filePath];
-        EpubParser *parser = [EpubParser new];
-        [parser unzipEpub:book];
-        [[DSDatabase instance] storeEpubModel:book];
-    }
+        NSArray *books = [self allBooks];
+        for (BookModel *model in books) {
+            NSLog(@"book`s id = %ld isUnzip = %d WithType = %lu",(long)model.indexId, model.hasUnzip, (unsigned long)model.bookType);
+            
+            EpubModel *book= [[EpubModel alloc] initWithEpubPath:model.filePath];
+            EpubParser *parser = [EpubParser new];
+            [parser unzipEpub:book];
+            [[DSDatabase instance] storeEpubModel:book];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:DSNOTIFICATION_DATABASE_NEW_BOOK object:nil];
+    } synchronous:YES];
+    
 }
 
 

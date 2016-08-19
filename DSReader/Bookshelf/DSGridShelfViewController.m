@@ -56,11 +56,27 @@ static NSString * const reuseIdentifier = @"Cell";
     
     
     _dataSource = [[DSDatabase instance] allEpubModel];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:DSNOTIFICATION_DATABASE_NEW_BOOK object:nil];
+}
+
+- (void)notificationAction:(NSNotification *)sender
+{
+    if (sender.name == DSNOTIFICATION_DATABASE_NEW_BOOK)
+    {
+        _dataSource = [[DSDatabase instance] allEpubModel];
+        [self.collectionView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*
